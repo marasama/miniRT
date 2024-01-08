@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:18:04 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/01/08 15:49:21 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/01/08 16:25:51 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@
 
 # define WIDTH 600
 # define HEIGHT 600
+
+typedef struct s_vector
+{
+	int	x;
+	int	y;
+	int	z;
+}	t_vector;
 
 typedef struct s_mlx
 {
