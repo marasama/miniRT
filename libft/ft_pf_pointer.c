@@ -1,40 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
+/*   ft_pf_pointer.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adurusoy <adurusoy@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/08 14:18:04 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/03/04 18:15:45 by adurusoy         ###   ########.fr       */
+/*   Created: 2023/03/11 21:42:02 by adurusoy          #+#    #+#             */
+/*   Updated: 2024/03/04 18:10:19 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#include "libft.h"
 
-# include "./minilibx/mlx.h"
-# include "./libft/libft.h"
-
-# define WIDTH 600
-# define HEIGHT 600
-
-typedef struct s_vector
+void	ft_pf_pointer(void *a, int *b)
 {
-	int	x;
-	int	y;
-	int	z;
-}	t_vector;
+	unsigned long long int	c;
 
-typedef struct s_mlx
-{
-	void			*mlx;
-	void			*window;
-	void			*image;
-	unsigned char	*pixels;
-	int				bpp;
-	int				endian;
-	int				size_line;
-}	t_mlx;
-
-#endif
+	c = (unsigned long long int)a;
+	ft_pf_string("0x", b);
+	ft_pf_hex(c, 1, b);
+}

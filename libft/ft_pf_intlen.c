@@ -1,40 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
+/*   ft_pf_intlen.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adurusoy <adurusoy@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/08 14:18:04 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/03/04 18:15:45 by adurusoy         ###   ########.fr       */
+/*   Created: 2023/03/11 21:42:06 by adurusoy          #+#    #+#             */
+/*   Updated: 2024/03/04 18:10:15 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#include "libft.h"
 
-# include "./minilibx/mlx.h"
-# include "./libft/libft.h"
-
-# define WIDTH 600
-# define HEIGHT 600
-
-typedef struct s_vector
+int	ft_pf_intlen(long long a)
 {
-	int	x;
-	int	y;
-	int	z;
-}	t_vector;
+	int	b;
 
-typedef struct s_mlx
-{
-	void			*mlx;
-	void			*window;
-	void			*image;
-	unsigned char	*pixels;
-	int				bpp;
-	int				endian;
-	int				size_line;
-}	t_mlx;
-
-#endif
+	b = 0;
+	if (a < 0)
+	{
+		a = -a;
+		b++;
+	}
+	while ((a / 10) != 0)
+	{
+		a /= 10;
+		b++;
+	}
+	return (b + 1);
+}

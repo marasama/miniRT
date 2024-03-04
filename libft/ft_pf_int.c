@@ -1,40 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
+/*   ft_pf_int.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adurusoy <adurusoy@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/08 14:18:04 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/03/04 18:15:45 by adurusoy         ###   ########.fr       */
+/*   Created: 2023/03/11 21:42:17 by adurusoy          #+#    #+#             */
+/*   Updated: 2024/03/04 18:10:07 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#include "libft.h"
 
-# include "./minilibx/mlx.h"
-# include "./libft/libft.h"
-
-# define WIDTH 600
-# define HEIGHT 600
-
-typedef struct s_vector
+void	ft_pf_int(long long a, int *e)
 {
-	int	x;
-	int	y;
-	int	z;
-}	t_vector;
+	int				b;
+	long long		c;
+	char			d;
 
-typedef struct s_mlx
-{
-	void			*mlx;
-	void			*window;
-	void			*image;
-	unsigned char	*pixels;
-	int				bpp;
-	int				endian;
-	int				size_line;
-}	t_mlx;
-
-#endif
+	b = ft_pf_intlen(a);
+	if (a < 0)
+	{
+		ft_pf_putchar('-', e);
+		a = -a;
+		b--;
+	}
+	c = ft_pow(b);
+	while (--b >= 0)
+	{
+		d = ((a / c) % 10) + 48;
+		c /= 10;
+		ft_pf_putchar(d, e);
+	}
+}
