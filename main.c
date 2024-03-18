@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:17:45 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/03/17 23:03:48 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/03/18 17:39:32 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,12 @@ void	print_error(int opt)
 	printf("\e[33mError\e[0m\n");
 	if (opt == 0)
 		printf("\e[35mWrong argument input!!!\e[0m\n");
-	if (opt == 1)
+	else if (opt == 1)
 		printf("\e[35mFile opening error...\e[0m\n");
-	if (opt == 2)
+	else if (opt == 2)
 		printf("\e[35mFile instructions are not satisfying!!\e[0m");
+	else if (opt == 3)
+		printf("\e[35mNumber is not in the allowed range!!\e[0m");
 	exit(1);
 }
 
@@ -59,6 +61,7 @@ int	main(int argc, char **argv)
 	t_mlx	*all;
 
 	check_args(argc, argv);
+	init_mlx
 	all = (t_mlx *)malloc(sizeof(t_mlx));
 	all->mlx = mlx_init();
 	all->window = mlx_new_window(all->mlx, WIDTH, HEIGHT,

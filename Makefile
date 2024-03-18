@@ -6,7 +6,7 @@
 #    By: adurusoy <adurusoy@42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/13 04:33:34 by adurusoy          #+#    #+#              #
-#    Updated: 2024/03/18 13:08:30 by adurusoy         ###   ########.fr        #
+#    Updated: 2024/03/18 16:57:24 by adurusoy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ $(NAME) : $(OBJS)
 
 norm :
 	@norminette $(SRC) minirt.h ./libft/
-	@printf "\e[33mNorminette: \t\e[35mSuits Norm's taste... \e[0m\n"
+	@printf "\e[33mNorminette: \e[35mYOUR CODE SUITS NORM's TASTE!!! \e[0m\n"
 
 clean :
 	@make -s -C ./libft fclean
