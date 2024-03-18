@@ -6,7 +6,7 @@
 #    By: adurusoy <adurusoy@42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/13 04:33:34 by adurusoy          #+#    #+#              #
-#    Updated: 2024/03/04 18:44:43 by adurusoy         ###   ########.fr        #
+#    Updated: 2024/03/18 13:08:30 by adurusoy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ INCFLAGS = -I minishell.h -I ./libft/libft.h
 
 CC = gcc
 
-SRC = main.c
+SRC = main.c check_funcs.c
 
 OBJS = $(SRC:.c=.o)
 
@@ -27,20 +27,23 @@ MLX = -L./minilibx -lmlx -lXext -lX11 -lm -lbsd
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	@echo "Compiling..."
-	@make -C ./libft
+	@echo "\e[33mCompiling...\e[0m"
+	@make -s -C ./libft
 	@cp libft/libft.a .
 	@printf "\e[33mLIBFT: \t\t\t\t\e[35mDONE \e[0m\n"
 	@$(CC) $(FLAGS) $(FT_PRNT) $(OBJS) libft.a $(MLX) -o $(NAME) $(INCFLAGS)
 	@printf "\e[33mHumble RayTracing Engine: \t\e[35mDONE\e[0m\n"
 
 norm :
-	norminette $(SRC) minirt.h ./libft/
+	@norminette $(SRC) minirt.h ./libft/
+	@printf "\e[33mNorminette: \t\e[35mSuits Norm's taste... \e[0m\n"
 
 clean :
+	@make -s -C ./libft fclean
 	@rm -rf $(OBJS)
 
 fclean : clean
+	@rm -rf libft.a
 	@rm -rf $(NAME)
 
 re : fclean all

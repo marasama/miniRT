@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adurusoy <adurusoy@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:20:09 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/20 22:20:10 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/03/17 21:55:04 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ char	*ft_strrchr(const char *s, int c)
 {
 	int	i;
 
-	i = ft_strlen(s);
+	if (s == NULL)
+		return (NULL);
+	i = ft_strlen(s) - 1;
 	while (i >= 0)
 	{
 		if (s[i] == (char)c)
