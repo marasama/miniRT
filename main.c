@@ -13,61 +13,42 @@
 #include "minirt.h"
 #include <string.h>
 #include <stdio.h>
-#include <fcntl.h>
 
-void	print_error(int opt)
+void	all_init(t_all **all)
 {
-	printf("\e[33mError\e[0m\n");
-	if (opt == 0)
-		printf("\e[35mWrong argument input!!!\e[0m\n");
-	else if (opt == 1)
-		printf("\e[35mFile opening error...\e[0m\n");
-	else if (opt == 2)
-		printf("\e[35mFile instructions are not satisfying!!\e[0m");
-	else if (opt == 3)
-		printf("\e[35mNumber is not in the allowed range!!\e[0m");
-	exit(1);
+	(*all)->mlx = NULL;
+	(*all)->mallocs = NULL;
+	(*all)->world = (t_world *)malloc(sizeof(t_world));
+	if (!(*all)->world)
+		print_error(all, 4);
+	ft_lstadd_front((*all)->mallocs, (*all)->world);
+	(*all)->world->camera = NULL;
+	(*all)->world->ambient = NULL;
+	(*all)->world->light = NULL;
+	(*all)->world->planes = NULL;
+	(*all)->world->cylinders = NULL;
+	(*all)->world->spheres = NULL;
 }
 
-void	check_args(int argc, char **argv)
+void	mlx_init(t_all **all)
 {
-	char	*a;
-	int		b;
-	int		fd;
-
-	if (argc != 2)
-		print_error(0);
-	a = ft_strrchr(argv[1], '.');
-	b = 0;
-	if (*(a + 1) != 'r' || *(a + 2) != 't' || a == 0)
-		print_error(0);
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-		print_error(1);
-	while (a != NULL)
-	{
-		a = ft_gnl(fd);
-		check_objects(a, &b);
-		free(a);
-		b++;
-	}
-	close(fd);
-	if (b < 3)
-		print_error(2);
+	(*all)->mlx = (t_mlx *)malloc(sizeof(t_mlx));
+	(*all)->mlx->window = mlx_new_window((*all)->mlx->mlx, WIDTH, HEIGHT,
+			"Humble RayTracing Engine");
+	(*all)->mlx->image = mlx_new_image((*all)->mlx, WIDTH, HEIGHT);
+	(*all)->mlx->pixels = (unsigned char *)mlx_get_data_addr((*all)->mlx->image,
+			&(*all)->mlx->bpp, &(*all)->mlx->size_line, &(*all)->mlx->endian);
 }
 
 int	main(int argc, char **argv)
 {
-	t_mlx	*all;
+	t_all	*all;
 
-	check_args(argc, argv);
-	init_mlx
-	all = (t_mlx *)malloc(sizeof(t_mlx));
-	all->mlx = mlx_init();
-	all->window = mlx_new_window(all->mlx, WIDTH, HEIGHT,
-			"Humble RayTracing Engine");
-	all->image = mlx_new_image(all->mlx, WIDTH, HEIGHT);
-	all->pixels = (unsigned char *)mlx_get_data_addr(all->image,
-			&all->bpp, &all->size_line, &all->endian);
+	all = (t_all *)malloc(sizeof(t_all));
+	if (!all)
+		return (1); 
+	all_init(&all);
+	check_args(&all, argc, argv);
+	mlx_init(&all);
 	return (0);
 }

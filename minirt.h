@@ -95,8 +95,28 @@ typedef struct s_mlx
 	int				size_line;
 }	t_mlx;
 
-void	print_error(int opt);
+typedef struct s_world
+{
+	t_camera	*camera;
+	t_ambient	*ambient;
+	t_light		*light;
+	t_list		*planes;
+	t_list		*cylinders;
+	t_list		*spheres;
+}	t_world;
+
+typedef struct s_all
+{
+	t_mlx	*mlx;
+	t_world	*world;
+	t_list	*mallocs;
+}	t_all;
+
+void	print_error(t_all **all, int opt);
 int		ft_isws(const char *a, int *b, int c);
-double	ft_strtod(const char *a);
+double	ft_strtod(t_all **all, const char *a);
+void	free_everything(t_all **all);
+void	print_error(t_all **all, int opt);
+void	check_args(t_all **all, int argc, char **argv);
 
 #endif

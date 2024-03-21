@@ -38,7 +38,13 @@ void	check_objects(const char *a, int *b)
 	c = 0;
 	ft_isws(a, &c, 0);
 	if (a[c] == 'C' && ft_isws(a, &c, 1))
+	{
 		check_camera(a);
+		(*b)++;
+	}
 	else if (a[c] == 'A' && ft_isws(a, &c, 1))
+	{
 		check_ambient(a);
+		(*b)++;
+	}
 }
