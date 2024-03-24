@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:17:45 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/03/24 01:57:14 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/03/25 01:45:46 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	init_all(t_all **all)
 void	init_mlx(t_all **all)
 {
 	(*all)->mlx = (t_mlx *)malloc(sizeof(t_mlx));
+	(*all)->mlx->mlx = mlx_init();
 	(*all)->mlx->window = mlx_new_window((*all)->mlx->mlx, WIDTH, HEIGHT,
 			"Humble RayTracing Engine");
 	(*all)->mlx->image = mlx_new_image((*all)->mlx, WIDTH, HEIGHT);

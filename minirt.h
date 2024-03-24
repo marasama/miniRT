@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:18:04 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/03/24 04:25:44 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/03/25 01:19:27 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,22 @@ double	ft_strtod(const char *a);
 void	free_everything(t_list **mem);
 void	print_error(t_all **all, int opt);
 void	check_args(t_all **all, int argc, char **argv);
-void	check_objects(t_all **all, const char *a, int *b);
+void	check_objects(t_all **all, const char *a);
+// SET OBJECTS FUNCTIONS
+void	take_color(const char *a, t_color *rgb);
+void	take_v3(const char *a, t_vector *v3);
+void	set_camera(t_all **all, const char *a);
+void	set_ambient(t_all **all, const char *a);
+void	set_light(t_all **all, const char *a);
+void	set_plane(t_all **all, const char *a);
+void	set_sphere(t_all **all, const char *a);
+void	set_cylinder(t_all **all, const char *a);
+// PRINT OBJECTS FUNCTIONS
+void	print_camera(t_camera *asd);
+void	print_ambient(t_ambient *asd);
+void	print_light(t_light *asd);
+void	print_plane(t_plane *asd);
+void	print_sphere(t_sphere *asd);
+void	print_cylinder(t_cylinder *asd);
 
 #endif

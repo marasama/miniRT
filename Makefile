@@ -6,7 +6,7 @@
 #    By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/13 04:33:34 by adurusoy          #+#    #+#              #
-#    Updated: 2024/03/23 23:24:32 by adurusoy         ###   ########.fr        #
+#    Updated: 2024/03/25 01:09:25 by adurusoy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,14 @@ INCFLAGS = -I minishell.h -I ./libft/libft.h
 
 CC = gcc
 
-SRC = main.c check_funcs.c utils.c
+UTILS = ./utils/check_funcs.c \
+		./utils/utils.c \
+		./utils/print_objects.c \
+		./utils/take_input.c \
+		./utils/take_input2.c \
+		./utils/print_objects2.c
+
+SRC = main.c $(UTILS)
 
 OBJS = $(SRC:.c=.o)
 

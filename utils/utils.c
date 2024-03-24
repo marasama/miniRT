@@ -6,11 +6,11 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 17:11:01 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/03/24 03:30:55 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/03/25 01:43:37 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "../minirt.h"
 #include <fcntl.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -109,26 +109,25 @@ void	print_error(t_all **all, int opt)
 void	check_args(t_all **all, int argc, char **argv)
 {
 	char	*a;
-	int		b;
 	int		fd;
+	int b = 0;
 
 	if (argc != 2)
 		print_error(all, 0);
 	a = ft_strrchr(argv[1], '.');
-	b = 0;
 	if (a == NULL || *(a + 1) != 'r' || *(a + 2) != 't')
 		print_error(all, 0);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		print_error(all, 1);
-	while (a != NULL)
+	while (1)
 	{
-		a = ft_gnl(fd);
-		check_objects(all, a, &b);
-		free(a);
 		b++;
+		a = ft_gnl(fd);
+		if (!a)
+			break ;
+		check_objects(all, a);
+		free(a);
 	}
 	close(fd);
-	if (b < 3)
-		print_error(all, 2);
 }
