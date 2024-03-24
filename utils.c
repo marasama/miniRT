@@ -3,40 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adurusoy <adurusoy@42.fr>                  +#+  +:+       +#+        */
+/*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 17:11:01 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/03/18 17:11:52 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/03/24 03:30:55 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include <fcntl.h>
 #include <stdio.h>
+#include <unistd.h>
 
-double	ft_strtod(t_all **all, const char *a)
+double	ft_strtod(const char *a)
 {
 	int		d;
-	char	*e;
 	double	f;
 	double	g;
 
 	d = 0;
-	while (ft_isdigit(a[d]) && a[d] != NULL)
+	f = ft_atoi(a);
+	if (a[d] == '-' || a[d] == '+')
 		d++;
-	if (a[d] != '.' || a[d] != ',')
-		print_error(all, 3);
-	e = ft_substr(a, 0, d);
-	f = ft_atoi(e);
-	free(e);
+	while (ft_isdigit(a[d]) && a[d])
+		d++;
+	if (a[d] != '.')
+		return (f);
+	d++;
 	a += d;
 	d = 0;
-	while (ft_isdigit(a[d]) && a[d] != NULL)
+	while (ft_isdigit(a[d]) && a[d])
 		d++;
-	e = ft_substr(a, 0, d);
-	g = ft_atoi(e);
-	f += g / ft_pow(++d);
-	free (e);
+	g = ft_atoi(a);
+	if (f >= 0)
+		f += (g / ft_pow(++d));
+	else
+		f -= (g / ft_pow(++d));
 	return (f);
 }
 
@@ -67,19 +69,18 @@ int	ft_isws(const char *a, int *b, int c)
 	return (0);
 }
 
-void	free_everything(t_all **all)
+void	free_everything(t_list **mem)
 {
-	if (!(*all)->mallocs)
+	if (!(*mem))
+		return ;
+	if ((*mem)->next != NULL)
 	{
-		free((*all));
-		return;
+		free_everything(&(*mem)->next);
 	}
-	if ((*all)->mallocs->next != NULL)
-		free_everything(&(*all)->mallocs->next);
-	if ((*all)->mallocs->content)
-		(*all)->mallocs->content = (free((*all)->mallocs->content), NULL);
-	if ((*all)->mallocs)
-		(*all)->mallocs = (free((*all)->mallocs), NULL);
+	if ((*mem)->content)
+		(*mem)->content = (free((*mem)->content), NULL);
+	if (*mem)
+		*mem = (free((*mem)->content), NULL);
 }
 
 void	print_error(t_all **all, int opt)
@@ -90,12 +91,18 @@ void	print_error(t_all **all, int opt)
 	else if (opt == 1)
 		printf("\e[35mFile opening error...\e[0m\n");
 	else if (opt == 2)
-		printf("\e[35mFile instructions are not satisfying!!\e[0m");
+		printf("\e[35mFile instructions are not satisfying!!\e[0m\n");
 	else if (opt == 3)
-		printf("\e[35mNumber is not in the allowed range!!\e[0m");
+		printf("\e[35mNumber is not in the allowed range!!\e[0m\n");
 	else if (opt == 4)
-		printf("\e[35mMemory allocation error!!\e[0m");
-	free_everything(all);
+		printf("\e[35mMemory allocation error!!\e[0m\n");
+	else if (opt == 5)
+	{
+		printf("\e[35mYou can only have one camera,");
+		printf("ambient or light object!!\e[0m\n");
+	}
+	free_everything(&(*all)->mallocs);
+	free(all);
 	exit(1);
 }
 
@@ -109,7 +116,7 @@ void	check_args(t_all **all, int argc, char **argv)
 		print_error(all, 0);
 	a = ft_strrchr(argv[1], '.');
 	b = 0;
-	if (*(a + 1) != 'r' || *(a + 2) != 't' || a == 0)
+	if (a == NULL || *(a + 1) != 'r' || *(a + 2) != 't')
 		print_error(all, 0);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
@@ -117,7 +124,7 @@ void	check_args(t_all **all, int argc, char **argv)
 	while (a != NULL)
 	{
 		a = ft_gnl(fd);
-		check_objects(a, &b);
+		check_objects(all, a, &b);
 		free(a);
 		b++;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adurusoy <adurusoy@42.fr>                  +#+  +:+       +#+        */
+/*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:18:04 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/03/18 17:44:37 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/03/24 04:25:44 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ typedef struct s_color
 
 typedef struct s_ambient
 {
-	t_vector	coordinates;
 	double		l_ratio;
 	t_color		color;
 }	t_ambient;
@@ -114,9 +113,10 @@ typedef struct s_all
 
 void	print_error(t_all **all, int opt);
 int		ft_isws(const char *a, int *b, int c);
-double	ft_strtod(t_all **all, const char *a);
-void	free_everything(t_all **all);
+double	ft_strtod(const char *a);
+void	free_everything(t_list **mem);
 void	print_error(t_all **all, int opt);
 void	check_args(t_all **all, int argc, char **argv);
+void	check_objects(t_all **all, const char *a, int *b);
 
 #endif

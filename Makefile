@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: adurusoy <adurusoy@42.fr>                  +#+  +:+       +#+         #
+#    By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/13 04:33:34 by adurusoy          #+#    #+#              #
-#    Updated: 2024/03/18 16:57:24 by adurusoy         ###   ########.fr        #
+#    Updated: 2024/03/23 23:24:32 by adurusoy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ INCFLAGS = -I minishell.h -I ./libft/libft.h
 
 CC = gcc
 
-SRC = main.c check_funcs.c
+SRC = main.c check_funcs.c utils.c
 
 OBJS = $(SRC:.c=.o)
 

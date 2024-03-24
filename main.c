@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adurusoy <adurusoy@42.fr>                  +#+  +:+       +#+        */
+/*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:17:45 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/03/18 17:39:32 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/03/24 01:57:14 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 #include <string.h>
 #include <stdio.h>
 
-void	all_init(t_all **all)
+void	init_all(t_all **all)
 {
 	(*all)->mlx = NULL;
 	(*all)->mallocs = NULL;
 	(*all)->world = (t_world *)malloc(sizeof(t_world));
 	if (!(*all)->world)
 		print_error(all, 4);
-	ft_lstadd_front((*all)->mallocs, (*all)->world);
+	ft_lstadd_front(&(*all)->mallocs, ft_lstnew((*all)->world));
 	(*all)->world->camera = NULL;
 	(*all)->world->ambient = NULL;
 	(*all)->world->light = NULL;
@@ -30,7 +30,7 @@ void	all_init(t_all **all)
 	(*all)->world->spheres = NULL;
 }
 
-void	mlx_init(t_all **all)
+void	init_mlx(t_all **all)
 {
 	(*all)->mlx = (t_mlx *)malloc(sizeof(t_mlx));
 	(*all)->mlx->window = mlx_new_window((*all)->mlx->mlx, WIDTH, HEIGHT,
@@ -46,9 +46,9 @@ int	main(int argc, char **argv)
 
 	all = (t_all *)malloc(sizeof(t_all));
 	if (!all)
-		return (1); 
-	all_init(&all);
+		return (1);
+	init_all(&all);
 	check_args(&all, argc, argv);
-	mlx_init(&all);
+	init_mlx(&all);
 	return (0);
 }
