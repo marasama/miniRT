@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:17:45 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/03/25 03:09:48 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:19:23 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,6 @@ void	init_all(t_all **all)
 	(*all)->world->planes = NULL;
 	(*all)->world->cylinders = NULL;
 	(*all)->world->spheres = NULL;
-}
-
-void	key_hooks(t_all **all)
-{
-	mlx_loop((*all)->mlx->ptr);
 }
 
 void	init_mlx(t_all **all)

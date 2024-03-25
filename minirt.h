@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:18:04 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/03/25 03:09:36 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/03/25 17:56:55 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,5 +136,6 @@ void	print_sphere(t_sphere *asd);
 void	print_cylinder(t_cylinder *asd);
 // IMAGE CREATION FUNCTIONS
 void	create_everything(t_all **all);
+void    key_hooks(t_all **all);
 
 #endif
