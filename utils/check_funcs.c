@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 22:08:01 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/03/25 01:19:29 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/03/25 02:43:46 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,14 @@ void	check_objects(t_all **all, const char *a)
 		set_ambient(all, a);
 	else if (a[c] == 'L' && ft_isws(a, &c, 1))
 		set_light(all, a);
-	else if ((a[c] == 's' && a[c + 1] == 'p') && (a[c + 2] == '\t' || a[c + 2] == ' '))
+	else if ((a[c] == 's' && a[c + 1] == 'p')
+		&& (a[c + 2] == '\t' || a[c + 2] == ' '))
 		set_sphere(all, a);
-	else if ((a[c] == 'p' && a[c + 1] == 'l') && (a[c + 2] == '\t' || a[c + 2] == ' '))
+	else if ((a[c] == 'p' && a[c + 1] == 'l')
+		&& (a[c + 2] == '\t' || a[c + 2] == ' '))
 		set_plane(all, a);
-	else if ((a[c] == 'c' && a[c + 1] == 'y') && (a[c + 2] == '\t' || a[c + 2] == ' '))
+	else if ((a[c] == 'c' && a[c + 1] == 'y')
+		&& (a[c + 2] == '\t' || a[c + 2] == ' '))
 		set_cylinder(all, a);
 	else
 		printf("%s", a);

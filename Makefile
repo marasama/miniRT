@@ -6,7 +6,7 @@
 #    By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/13 04:33:34 by adurusoy          #+#    #+#              #
-#    Updated: 2024/03/25 01:09:25 by adurusoy         ###   ########.fr        #
+#    Updated: 2024/03/25 03:08:27 by adurusoy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ UTILS = ./utils/check_funcs.c \
 		./utils/take_input2.c \
 		./utils/print_objects2.c
 
-SRC = main.c $(UTILS)
+SRC = main.c $(UTILS) create_image.c
 
 OBJS = $(SRC:.c=.o)
 

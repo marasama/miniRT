@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 17:11:01 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/03/25 01:43:37 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/03/25 02:44:17 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,6 @@ void	check_args(t_all **all, int argc, char **argv)
 {
 	char	*a;
 	int		fd;
-	int b = 0;
 
 	if (argc != 2)
 		print_error(all, 0);
@@ -122,7 +121,6 @@ void	check_args(t_all **all, int argc, char **argv)
 		print_error(all, 1);
 	while (1)
 	{
-		b++;
 		a = ft_gnl(fd);
 		if (!a)
 			break ;

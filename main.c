@@ -6,12 +6,11 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:17:45 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/03/25 01:45:46 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/03/25 03:09:48 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include <string.h>
 #include <stdio.h>
 
 void	init_all(t_all **all)
@@ -30,15 +29,22 @@ void	init_all(t_all **all)
 	(*all)->world->spheres = NULL;
 }
 
+void	key_hooks(t_all **all)
+{
+	mlx_loop((*all)->mlx->ptr);
+}
+
 void	init_mlx(t_all **all)
 {
 	(*all)->mlx = (t_mlx *)malloc(sizeof(t_mlx));
-	(*all)->mlx->mlx = mlx_init();
-	(*all)->mlx->window = mlx_new_window((*all)->mlx->mlx, WIDTH, HEIGHT,
+	(*all)->mlx->ptr = mlx_init();
+	(*all)->mlx->window = mlx_new_window((*all)->mlx->ptr, WIDTH, HEIGHT,
 			"Humble RayTracing Engine");
-	(*all)->mlx->image = mlx_new_image((*all)->mlx, WIDTH, HEIGHT);
+	(*all)->mlx->image = mlx_new_image((*all)->mlx->ptr, WIDTH, HEIGHT);
 	(*all)->mlx->pixels = (unsigned char *)mlx_get_data_addr((*all)->mlx->image,
 			&(*all)->mlx->bpp, &(*all)->mlx->size_line, &(*all)->mlx->endian);
+	create_everything(all);
+	key_hooks(all);
 }
 
 int	main(int argc, char **argv)

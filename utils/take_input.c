@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 00:20:29 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/03/25 01:10:28 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/03/25 02:49:16 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	take_color(const char *a, t_color *rgb)
 	rgb->blue = ft_atoi(a + b);
 }
 
-void	take_v3(const char *a, t_vector *v3)
+void	take_v3(const char *a, t_v3 *v3)
 {
 	int		b;
 
@@ -60,12 +60,12 @@ void	set_camera(t_all **all, const char *a)
 	ft_isws(a, &b, 0);
 	b++;
 	ft_isws(a, &b, 0);
-	take_v3(a + b, &((*all)->world->camera->coordinates));
+	take_v3(a + b, &((*all)->world->camera->cordnts));
 	while ((ft_isdigit(a[b]) || a[b] == '.' || a[b] == '-' || a[b] == '+'
 			|| a[b] == ',') && a[b])
 		b++;
 	ft_isws(a, &b, 0);
-	take_v3(a + b, &((*all)->world->camera->orientation));
+	take_v3(a + b, &((*all)->world->camera->normal));
 	while ((ft_isdigit(a[b]) || a[b] == '.' || a[b] == '-' || a[b] == '+'
 			|| a[b] == ',') && a[b])
 		b++;
@@ -107,7 +107,7 @@ void	set_light(t_all **all, const char *a)
 	ft_isws(a, &b, 0);
 	b++;
 	ft_isws(a, &b, 0);
-	take_v3(a + b, &((*all)->world->light->coordinates));
+	take_v3(a + b, &((*all)->world->light->cordnts));
 	while ((ft_isdigit(a[b]) || a[b] == '.' || a[b] == '-' || a[b] == '+'
 			|| a[b] == ',') && a[b])
 		b++;

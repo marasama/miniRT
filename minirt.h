@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:18:04 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/03/25 01:19:27 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/03/25 03:09:36 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,18 @@
 
 # define WIDTH 600
 # define HEIGHT 600
-# define AMBIENT 1
-# define CAMERA 2
-# define LIGHT 3
-# define SPHERE 4
-# define PLANE 5
-# define CYLINDER 6
 
-typedef struct s_vector
+typedef struct s_v3
 {
 	double	x;
 	double	y;
 	double	z;
+}	t_v3;
+
+typedef struct s_vector
+{
+	t_v3	s_point;
+	t_v3	d_point;
 }	t_vector;
 
 typedef struct s_color
@@ -48,36 +48,36 @@ typedef struct s_ambient
 
 typedef struct s_camera
 {
-	t_vector	coordinates;
-	t_vector	orientation;
+	t_v3		cordnts;
+	t_v3		normal;
 	double		fov;
 }	t_camera;
 
 typedef struct s_light
 {
-	t_vector	coordinates;
+	t_v3		cordnts;
 	double		brightness;
 	t_color		color;
 }	t_light;
 
 typedef struct s_sphere
 {
-	t_vector	coordinates;
+	t_v3		cordnts;
 	double		diameter;
 	t_color		color;
 }	t_sphere;
 
 typedef struct s_plane
 {
-	t_vector	coordinates;
-	t_vector	normal;
+	t_v3		cordnts;
+	t_v3		normal;
 	t_color		color;
 }	t_plane;
 
 typedef struct s_cylinder
 {
-	t_vector	coordinates;
-	t_vector	axis;
+	t_v3		cordnts;
+	t_v3		normal;
 	double		diameter;
 	double		height;
 	t_color		color;
@@ -85,7 +85,7 @@ typedef struct s_cylinder
 
 typedef struct s_mlx
 {
-	void			*mlx;
+	void			*ptr;
 	void			*window;
 	void			*image;
 	unsigned char	*pixels;
@@ -120,7 +120,7 @@ void	check_args(t_all **all, int argc, char **argv);
 void	check_objects(t_all **all, const char *a);
 // SET OBJECTS FUNCTIONS
 void	take_color(const char *a, t_color *rgb);
-void	take_v3(const char *a, t_vector *v3);
+void	take_v3(const char *a, t_v3*v3);
 void	set_camera(t_all **all, const char *a);
 void	set_ambient(t_all **all, const char *a);
 void	set_light(t_all **all, const char *a);
@@ -134,5 +134,7 @@ void	print_light(t_light *asd);
 void	print_plane(t_plane *asd);
 void	print_sphere(t_sphere *asd);
 void	print_cylinder(t_cylinder *asd);
+// IMAGE CREATION FUNCTIONS
+void	create_everything(t_all **all);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 00:20:02 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/03/25 01:15:48 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/03/25 03:10:05 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void	print_camera(t_camera *asd)
 {
 	printf("---------CAMERA---------\n");
 	printf("COORDINATES\n");
-	printf("%f\t %f\t %f\n", asd->coordinates.x, asd->coordinates.y, asd->coordinates.z);
+	printf("%f\t %f\t %f\n", asd->cordnts.x, asd->cordnts.y, asd->cordnts.z);
 	printf("ORIENTATION\n");
-	printf("%f\t %f\t %f\n", asd->orientation.x, asd->orientation.y, asd->orientation.z);
+	printf("%f\t %f\t %f\n", asd->normal.x, asd->normal.y, asd->normal.z);
 	printf("FIELD OF VIEW\n");
-	printf("%f", asd->fov);
+	printf("%f\n", asd->fov);
 	printf("------------------------\n");
 }
 
@@ -39,7 +39,7 @@ void	print_light(t_light *asd)
 {
 	printf("----------LIGHT----------\n");
 	printf("COORDINATES\n");
-	printf("%f\t %f\t %f\n", asd->coordinates.x, asd->coordinates.y, asd->coordinates.z);
+	printf("%f\t %f\t %f\n", asd->cordnts.x, asd->cordnts.y, asd->cordnts.z);
 	printf("BRIGHTNESS\n");
 	printf("%f\n", asd->brightness);
 	printf("COLOR\n");
@@ -51,7 +51,7 @@ void	print_plane(t_plane *asd)
 {
 	printf("----------PLANE----------\n");
 	printf("COORDINATES\n");
-	printf("%f\t %f\t %f\n", asd->coordinates.x, asd->coordinates.y, asd->coordinates.z);
+	printf("%f\t %f\t %f\n", asd->cordnts.x, asd->cordnts.y, asd->cordnts.z);
 	printf("NORMAL\n");
 	printf("%f\t %f\t %f\n", asd->normal.x, asd->normal.y, asd->normal.z);
 	printf("COLOR\n");
@@ -63,11 +63,10 @@ void	print_sphere(t_sphere *asd)
 {
 	printf("---------SPHERE---------\n");
 	printf("COORDINATES\n");
-	printf("%f , %f , %f\n", asd->coordinates.x, asd->coordinates.y, asd->coordinates.z);
+	printf("%f , %f , %f\n", asd->cordnts.x, asd->cordnts.y, asd->cordnts.z);
 	printf("DIAMETER\n");
 	printf("%f\n", asd->diameter);
 	printf("COLOR\n");
 	printf("%d , %d , %d\n", asd->color.red, asd->color.green, asd->color.blue);
 	printf("------------------------\n");
 }
-
