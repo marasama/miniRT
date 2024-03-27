@@ -6,7 +6,7 @@
 #    By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/13 04:33:34 by adurusoy          #+#    #+#              #
-#    Updated: 2024/03/25 03:08:27 by adurusoy         ###   ########.fr        #
+#    Updated: 2024/03/25 20:16:44 by adurusoy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,9 @@ UTILS = ./utils/check_funcs.c \
 		./utils/print_objects.c \
 		./utils/take_input.c \
 		./utils/take_input2.c \
-		./utils/print_objects2.c
+		./utils/print_objects2.c \
+		./utils/check_intersection.c \
+		./utils/vector_funcs.c
 
 SRC = main.c $(UTILS) create_image.c
 
