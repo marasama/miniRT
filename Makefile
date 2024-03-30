@@ -6,11 +6,11 @@
 #    By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/13 04:33:34 by adurusoy          #+#    #+#              #
-#    Updated: 2024/03/25 20:16:44 by adurusoy         ###   ########.fr        #
+#    Updated: 2024/03/30 03:51:16 by adurusoy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = mini_rt
+NAME = miniRT
 
 FLAGS = -Wall -Werror -Wextra -g
 
