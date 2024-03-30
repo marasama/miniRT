@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:18:04 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/03/30 06:26:54 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/03/30 13:41:07 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include "./libft/libft.h"
 # include <math.h>
 
-# define WIDTH 600
-# define HEIGHT 600
+# define WIDTH 900
+# define HEIGHT 900
 
 typedef struct s_v3
 {
@@ -47,11 +47,22 @@ typedef struct s_ambient
 	t_color		color;
 }	t_ambient;
 
+typedef struct s_cam_prop
+{
+	t_v3	horizontal;
+	t_v3	vertical;
+	t_v3	left_bottom;
+	t_v3	w;
+	t_v3	u;
+	t_v3	v;
+}	t_cam_prop;
+
 typedef struct s_camera
 {
 	t_v3		cordnts;
 	t_v3		normal;
 	double		fov;
+	t_cam_prop	props;
 }	t_camera;
 
 typedef struct s_light

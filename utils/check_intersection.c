@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 18:52:23 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/03/30 06:15:01 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/03/30 13:34:34 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int     calc_discriminant(t_sphere *sp, t_ray *ray)
 
     v2sp = subtract_v3(ray->origin, sp->cordnts);
     dot_a = dot_v3(ray->direction, ray->direction);
-    dot_b = dot_v3(v2sp, ray->direction) * 2.0;
+    dot_b = dot_v3(v2sp, ray->direction);
     dot_c = dot_v3(v2sp, v2sp) - sp->diameter * sp->diameter / 4.0;
-    discriminant = dot_b * dot_b - 4 * dot_a * dot_c;
+    discriminant = dot_b * dot_b - dot_a * dot_c;
     if (discriminant >= 0)
         return (1);
     return (0);
@@ -40,12 +40,7 @@ void    sphere_intersect(t_all **all, int x, int y, t_ray *ray)
     {
         tmp = sphere_list->content;
         if (calc_discriminant(tmp, ray))
-        {
             ray->color = tmp->color;
-            /* ray->color.blue = tmp->color.blue;
-            ray->color.green = tmp->color.green;
-            ray->color.red = tmp->color.red; */
-        }
         sphere_list = sphere_list->next;
     }
 }
