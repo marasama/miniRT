@@ -6,11 +6,11 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:17:45 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/03/25 18:19:23 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/03/30 18:54:28 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "../minirt.h"
 #include <stdio.h>
 
 void	init_all(t_all **all)

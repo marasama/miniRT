@@ -6,11 +6,11 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 00:20:29 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/03/29 19:11:44 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/03/30 18:47:36 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minirt.h"
+#include "../../minirt.h"
 
 void	take_color(const char *a, t_color *rgb)
 {

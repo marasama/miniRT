@@ -6,7 +6,7 @@
 #    By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/13 04:33:34 by adurusoy          #+#    #+#              #
-#    Updated: 2024/03/30 03:51:16 by adurusoy         ###   ########.fr        #
+#    Updated: 2024/03/30 18:59:15 by adurusoy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,16 +18,20 @@ INCFLAGS = -I minishell.h -I ./libft/libft.h
 
 CC = gcc
 
-UTILS = ./utils/check_funcs.c \
-		./utils/utils.c \
-		./utils/print_objects.c \
-		./utils/take_input.c \
-		./utils/take_input2.c \
-		./utils/print_objects2.c \
-		./utils/check_intersection.c \
-		./utils/vector_funcs.c
-
-SRC = main.c $(UTILS) create_image.c
+SRC = ./srcs/check_funcs/check_funcs.c \
+		./srcs/utils/utils.c \
+		./srcs/utils/utils2.c \
+		./srcs/print_objects/print_objects.c \
+		./srcs/print_objects/print_objects2.c \
+		./srcs/input_funcs/take_input2.c \
+		./srcs/input_funcs/take_input.c \
+		./srcs/render/create_image.c \
+		./srcs/render/sphere_intersection.c \
+		./srcs/render/check_intersection.c \
+		./srcs/vector_funcs/vector_funcs.c \
+		./srcs/vector_funcs/vector_funcs2.c \
+		./srcs/vector_funcs/vector_funcs3.c \
+		./srcs/main.c
 
 OBJS = $(SRC:.c=.o)
 

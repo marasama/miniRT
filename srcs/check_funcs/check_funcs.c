@@ -6,11 +6,11 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 22:08:01 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/03/25 02:43:46 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/03/30 18:47:44 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minirt.h"
+#include "../../minirt.h"
 #include <stdio.h>
 
 void	check_objects(t_all **all, const char *a)

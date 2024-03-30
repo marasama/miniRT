@@ -6,11 +6,11 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 17:11:01 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/03/25 02:44:17 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/03/30 18:46:56 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minirt.h"
+#include "../../minirt.h"
 #include <fcntl.h>
 #include <stdio.h>
 #include <unistd.h>

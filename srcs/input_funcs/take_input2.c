@@ -6,11 +6,11 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 00:21:09 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/03/25 03:06:43 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/03/30 18:47:29 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minirt.h"
+#include "../../minirt.h"
 
 void	take_coordinate(const char *a, int *b, t_v3 *coordinates)
 {

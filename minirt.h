@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:18:04 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/03/30 13:41:07 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/03/30 18:59:42 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,22 +147,24 @@ void	print_plane(t_plane *asd);
 void	print_sphere(t_sphere *asd);
 void	print_cylinder(t_cylinder *asd);
 // IMAGE CREATION FUNCTIONS
+int		destroy_exit(t_all **all);
 void	create_everything(t_all **all);
-void    key_hooks(t_all **all);
+void	key_hooks(t_all **all);
 // INTERSECTION CHECK FUNCTIONS
-void    sphere_intersect(t_all **all, int x, int y, t_ray *vector);
-int     calc_discriminant(t_sphere *sp, t_ray *vector);
+void	check_intersection(t_all **all, int x, int y, t_ray *tmp);
+void	sphere_intersect(t_all **all, int x, int y, t_ray *vector);
 // VECTOR CALCULATION FUNCTIONS
-double  dot_v3(t_v3 a, t_v3 b);
-t_v3    subtract_v3(t_v3 a, t_v3 b);
-t_v3    add_v3(t_v3 a, t_v3 b);
-t_v3    divide_v3(t_v3 a, double  b);
-t_v3    scale_v3(t_v3 a, double  b);
-t_v3    add_num_v3(t_v3 a, double  b);
-t_v3    subtract_num_v3(t_v3 a, double  b);
+double	dot_v3(t_v3 a, t_v3 b);
+t_v3	subtract_v3(t_v3 a, t_v3 b);
+t_v3	add_v3(t_v3 a, t_v3 b);
+t_v3	divide_v3(t_v3 a, double b);
+t_v3	scale_v3(t_v3 a, double b);
+t_v3	add_num_v3(t_v3 a, double b);
+t_v3	subtract_num_v3(t_v3 a, double b);
 t_v3	cross_v3(const t_v3 vec1, const t_v3 vec2);
 t_v3	normalize(t_v3 vec);
 t_v3	create_vector(double x, double y, double z);
-void	set_color(t_all **all, int x, int y, t_ray  *ray);
+double	len_v3(t_v3 v);
+void	set_color(t_all **all, int x, int y, t_ray *ray);
 
 #endif
