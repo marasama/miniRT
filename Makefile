@@ -6,7 +6,7 @@
 #    By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/13 04:33:34 by adurusoy          #+#    #+#              #
-#    Updated: 2024/03/30 18:59:15 by adurusoy         ###   ########.fr        #
+#    Updated: 2024/03/31 07:39:59 by adurusoy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ $(NAME) : $(OBJS)
 	@printf "\e[33mHumble RayTracing Engine: \t\e[35mDONE\e[0m\n"
 
 norm :
-	@norminette $(SRC) minirt.h ./libft/
+	@norminette $(SRC) minirt.h ./libft/ ./keycode.h
 	@printf "\e[33mNorminette: \e[35mYOUR CODE SUITS NORM's TASTE!!! \e[0m\n"
 
 clean :

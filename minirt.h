@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:18:04 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/03/30 18:59:42 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/03/31 07:06:42 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 
 # include "./minilibx/mlx.h"
 # include "./libft/libft.h"
+# include "keycode.h"
 # include <math.h>
 
-# define WIDTH 900
-# define HEIGHT 900
+# define WIDTH 1000
+# define HEIGHT 1000
 
 typedef struct s_v3
 {
@@ -39,6 +40,7 @@ typedef struct s_ray
 	t_v3	origin;
 	t_v3	direction;
 	t_color	color;
+	double	hit;
 }	t_ray;
 
 typedef struct s_ambient
@@ -148,6 +150,7 @@ void	print_sphere(t_sphere *asd);
 void	print_cylinder(t_cylinder *asd);
 // IMAGE CREATION FUNCTIONS
 int		destroy_exit(t_all **all);
+int		key_press(int keycode, t_all **all);
 void	create_everything(t_all **all);
 void	key_hooks(t_all **all);
 // INTERSECTION CHECK FUNCTIONS

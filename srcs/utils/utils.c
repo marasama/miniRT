@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 17:11:01 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/03/30 18:46:56 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/03/31 05:56:27 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,16 +71,15 @@ int	ft_isws(const char *a, int *b, int c)
 
 void	free_everything(t_list **mem)
 {
-	if (!(*mem))
-		return ;
-	if ((*mem)->next != NULL)
+	t_list	*tmp;
+
+	while ((*mem) != NULL)
 	{
-		free_everything(&(*mem)->next);
+		tmp = (*mem);
+		(*mem) = (*mem)->next;
+		free (tmp->content);
+		free (tmp);
 	}
-	if ((*mem)->content)
-		(*mem)->content = (free((*mem)->content), NULL);
-	if (*mem)
-		*mem = (free((*mem)->content), NULL);
 }
 
 void	print_error(t_all **all, int opt)
