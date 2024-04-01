@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 00:21:09 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/03/31 05:59:55 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/01 09:20:35 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	set_sphere(t_all **all, const char *a)
 	if (!new_sphere)
 		print_error(all, 4);
 	ft_lstadd_front(&(*all)->world->spheres, ft_lstnew(new_sphere));
-	ft_lstadd_front(&(*all)->mallocs, ft_lstnew(new_sphere));
 	b = 0;
 	ft_isws(a, &b, 0);
 	b += 2;
@@ -67,8 +66,6 @@ void	set_plane(t_all **all, const char *a)
 	if (!new_plane)
 		print_error(all, 4);
 	ft_lstadd_front(&(*all)->world->planes, ft_lstnew(new_plane));
-	ft_lstadd_front(&(*all)->mallocs, ft_lstnew(new_plane));
-	b = 0;
 	ft_isws(a, &b, 0);
 	b += 2;
 	take_coordinate(a, &b, &(new_plane->cordnts));
@@ -91,7 +88,6 @@ void	set_cylinder(t_all **all, const char *a)
 	if (!new_cylinder)
 		print_error(all, 4);
 	ft_lstadd_front(&(*all)->world->cylinders, ft_lstnew(new_cylinder));
-	ft_lstadd_front(&(*all)->mallocs, ft_lstnew(new_cylinder));
 	b = 0;
 	ft_isws(a, &b, 0);
 	b += 2;

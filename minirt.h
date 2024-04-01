@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:18:04 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/01 08:32:04 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/01 10:24:06 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 
 # define REFLECT 1000
 # define PI 3.141592653589793238462643383279502984
+# define EPSILON 0.0001
 
 typedef struct s_v3
 {
@@ -45,8 +46,8 @@ typedef struct s_color
 
 typedef struct s_hit
 {
-	double	hitNum;
-	t_v3	hitPoint;
+	double	hit_len;
+	t_v3	hit_point;
 	t_v3	normal;
 	int		color;
 	int		type;
@@ -63,7 +64,7 @@ typedef struct s_ray
 typedef struct s_ambient
 {
 	double		l_ratio;
-	t_color		color;
+	int			color;
 }	t_ambient;
 
 typedef struct s_cam_prop
@@ -88,21 +89,21 @@ typedef struct s_light
 {
 	t_v3		cordnts;
 	double		brightness;
-	t_color		color;
+	int			color;
 }	t_light;
 
 typedef struct s_sphere
 {
 	t_v3		cordnts;
 	double		diameter;
-	t_color		color;
+	int			color;
 }	t_sphere;
 
 typedef struct s_plane
 {
 	t_v3		cordnts;
 	t_v3		normal;
-	t_color		color;
+	int			color;
 }	t_plane;
 
 typedef struct s_cylinder
@@ -111,7 +112,7 @@ typedef struct s_cylinder
 	t_v3		normal;
 	double		diameter;
 	double		height;
-	t_color		color;
+	int			color;
 }	t_cylinder;
 
 typedef struct s_mlx
@@ -150,7 +151,7 @@ void	print_error(t_all **all, int opt);
 void	check_args(t_all **all, int argc, char **argv);
 void	check_objects(t_all **all, const char *a);
 // SET OBJECTS FUNCTIONS
-void	take_color(const char *a, t_color *rgb);
+void	take_color(const char *a, int *rgb);
 void	take_v3(const char *a, t_v3*v3);
 void	set_camera(t_all **all, const char *a);
 void	set_ambient(t_all **all, const char *a);
@@ -167,12 +168,14 @@ void	print_sphere(t_sphere *asd);
 void	print_cylinder(t_cylinder *asd);
 // IMAGE CREATION FUNCTIONS
 int		destroy_exit(t_all **all);
-int		key_press(int keycode, t_all **all);
 void	create_everything(t_all **all);
 void	key_hooks(t_all **all);
+int		key_press(int keycode, t_all **all);
+int		key_press2(int keycode, t_all **all);
 // INTERSECTION CHECK FUNCTIONS
 bool	check_intersection(t_all **all, t_ray *tmp);
-void	sphere_intersect(t_all **all, t_ray *vector, bool *a);
+void	sphere_intersect(t_all **all, t_ray *ray, bool *a);
+void	plane_intersect(t_all **all, t_ray *ray, bool *a);
 // VECTOR CALCULATION FUNCTIONS
 double	dot_v3(t_v3 a, t_v3 b);
 t_v3	subtract_v3(t_v3 a, t_v3 b);
@@ -190,11 +193,13 @@ double	min(double a, double b);
 // COLOR FUNCS
 void	set_color(t_all **all, int x, int y, t_color color);
 int		clamp(int x);
-int		colorToInt(t_color v3_color);
-t_color	intToColor(int color);
+int		color_to_int(t_color v3_color);
+t_color	int_to_color(int color);
 int		add_color(int color_a, int color_b);
 int		scale_color(int color, float c);
 int		color_product(int color_a, int color_b);
 int		color_comp(t_light light, t_hit hit);
+bool	check_shadow(t_all **all, t_light *light, t_hit hit);
+int		re_color(t_all **all, t_ray *ray);
 
 #endif

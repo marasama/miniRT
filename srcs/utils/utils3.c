@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_intersection.c                               :+:      :+:    :+:   */
+/*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/30 18:39:47 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/01 09:52:52 by adurusoy         ###   ########.fr       */
+/*   Created: 2024/04/01 09:41:10 by adurusoy          #+#    #+#             */
+/*   Updated: 2024/04/01 10:25:33 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minirt.h"
+#include <stdio.h>
 
-bool	check_intersection(t_all **all, t_ray *tmp)
+void	key_hooks(t_all **all)
 {
-	bool	hit;
+	mlx_hook((*all)->mlx->window, CROSS, 1, destroy_exit, all);
+	mlx_hook((*all)->mlx->window, 2, 1, key_press, all);
+	mlx_loop((*all)->mlx->ptr);
+}
 
-	hit = false;
-	if ((*all)->world->spheres != NULL)
-		sphere_intersect(all, tmp, &hit);
-	if ((*all)->world->planes != NULL)
-		plane_intersect(all, tmp, &hit);
-	return (hit);
+int	key_press2(int keycode, t_all **all)
+{
+	if (keycode == RIGHT_ARROW)
+	{
+		printf("RIGHT \n");
+		(*all)->world->camera->cordnts.x += 0.5;
+		create_everything(all);
+	}
 }

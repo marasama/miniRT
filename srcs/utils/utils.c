@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 17:11:01 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/03/31 05:56:27 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/01 09:14:49 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,11 @@ void	print_error(t_all **all, int opt)
 		printf("\e[35mYou can only have one camera,");
 		printf("ambient or light object!!\e[0m\n");
 	}
+	free_everything(&(*all)->world->planes);
+	free_everything(&(*all)->world->spheres);
+	free_everything(&(*all)->world->cylinders);
 	free_everything(&(*all)->mallocs);
-	free(all);
+	free(*all);
 	exit(1);
 }
 

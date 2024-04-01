@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 01:05:26 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/03/30 18:47:07 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/01 09:28:42 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 void	print_cylinder(t_cylinder *asd)
 {
+	t_color	rgb;
+
+	rgb = int_to_color(asd->color);
 	printf("--------CYLINDER--------\n");
 	printf("COORDINATES\n");
 	printf("%f\t %f\t %f\n", asd->cordnts.x, asd->cordnts.y, asd->cordnts.z);
@@ -25,6 +28,6 @@ void	print_cylinder(t_cylinder *asd)
 	printf("HEIGHT\n");
 	printf("%f\n", asd->height);
 	printf("COLOR\n");
-	printf("%d\t %d\t %d\n", asd->color.red, asd->color.green, asd->color.blue);
+	printf("%d\t %d\t %d\n", rgb.red, rgb.green, rgb.blue);
 	printf("------------------------\n");
 }

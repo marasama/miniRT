@@ -6,26 +6,28 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 00:20:29 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/03/30 18:47:36 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/01 09:28:31 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minirt.h"
 
-void	take_color(const char *a, t_color *rgb)
+void	take_color(const char *a, int *color)
 {
-	int	b;
+	int		b;
+	t_color	rgb;
 
 	b = 0;
-	rgb->red = ft_atoi(a);
+	rgb.red = ft_atoi(a);
 	while (ft_isdigit(a[b]))
 		b++;
 	b++;
-	rgb->green = ft_atoi(a + b);
+	rgb.green = ft_atoi(a + b);
 	while (ft_isdigit(a[b]))
 		b++;
 	b++;
-	rgb->blue = ft_atoi(a + b);
+	rgb.blue = ft_atoi(a + b);
+	(*color) = color_to_int(rgb);
 }
 
 void	take_v3(const char *a, t_v3 *v3)
