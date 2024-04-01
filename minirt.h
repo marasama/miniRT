@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:18:04 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/03/31 07:06:42 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/01 06:23:49 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,15 @@
 # include "keycode.h"
 # include <math.h>
 
-# define WIDTH 1000
-# define HEIGHT 1000
+# define WIDTH 900
+# define HEIGHT 900
+
+# define SPHERE 1
+# define PLANE 2
+# define CYLINDER 3
+
+# define REFLECT 1000
+# define PI 3.141592653589793238462643383279502984
 
 typedef struct s_v3
 {
@@ -35,12 +42,21 @@ typedef struct s_color
 	unsigned char	blue;
 }	t_color;
 
+typedef struct s_hit
+{
+	double	hitNum;
+	t_v3	hitPoint;
+	t_v3	normal;
+	int		color;
+	int		type;
+	void	*object;
+}	t_hit;
+
 typedef struct s_ray
 {
 	t_v3	origin;
 	t_v3	direction;
-	t_color	color;
-	double	hit;
+	t_hit	hit;
 }	t_ray;
 
 typedef struct s_ambient
@@ -154,8 +170,8 @@ int		key_press(int keycode, t_all **all);
 void	create_everything(t_all **all);
 void	key_hooks(t_all **all);
 // INTERSECTION CHECK FUNCTIONS
-void	check_intersection(t_all **all, int x, int y, t_ray *tmp);
-void	sphere_intersect(t_all **all, int x, int y, t_ray *vector);
+int		check_intersection(t_all **all, t_ray *tmp);
+void	sphere_intersect(t_all **all, t_ray *vector);
 // VECTOR CALCULATION FUNCTIONS
 double	dot_v3(t_v3 a, t_v3 b);
 t_v3	subtract_v3(t_v3 a, t_v3 b);
@@ -168,6 +184,16 @@ t_v3	cross_v3(const t_v3 vec1, const t_v3 vec2);
 t_v3	normalize(t_v3 vec);
 t_v3	create_vector(double x, double y, double z);
 double	len_v3(t_v3 v);
-void	set_color(t_all **all, int x, int y, t_ray *ray);
+double	max(double a, double b);
+double	min(double a, double b);
+// COLOR FUNCS
+void	set_color(t_all **all, int x, int y, t_color color);
+int		clamp(int x);
+int		colorToInt(t_color v3_color);
+t_color	intToColor(int color);
+int		add_color(int color_a, int color_b);
+int		scale_color(int color, float c);
+int		color_product(int color_a, int color_b);
+int		color_comp(t_light light, t_hit hit);
 
 #endif

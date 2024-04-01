@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 18:45:39 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/03/31 07:38:56 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/01 03:06:57 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,27 @@ int	key_press(int keycode, t_all **all)
 		(*all)->world->camera->cordnts.x += 0.5;
 	}
 	create_everything(all);
+}
+
+double	max(double a, double b)
+{
+	if (a > b)
+		return (a);
+	return (b);
+}
+
+double	min(double a, double b)
+{
+	if (a < b)
+		return (a);
+	return (b);
+}
+
+int	clamp(int x)
+{
+	if (x > 255)
+		return (255);
+	else if (x < 0)
+		return (0);
+	return (x);
 }

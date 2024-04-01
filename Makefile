@@ -6,7 +6,7 @@
 #    By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/13 04:33:34 by adurusoy          #+#    #+#              #
-#    Updated: 2024/03/31 07:39:59 by adurusoy         ###   ########.fr        #
+#    Updated: 2024/04/01 06:06:26 by adurusoy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,8 @@ CC = gcc
 SRC = ./srcs/check_funcs/check_funcs.c \
 		./srcs/utils/utils.c \
 		./srcs/utils/utils2.c \
+		./srcs/utils/color_funcs.c \
+		./srcs/utils/color_funcs2.c \
 		./srcs/print_objects/print_objects.c \
 		./srcs/print_objects/print_objects2.c \
 		./srcs/input_funcs/take_input2.c \
