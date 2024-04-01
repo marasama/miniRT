@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 18:29:03 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/03/31 02:56:33 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/01 07:28:13 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_v3	divide_v3(t_v3 a, double b)
 
 double	dot_v3(t_v3 a, t_v3 b)
 {
-	return (a.x * b.x + a.y * b.y + a.z * b.z);
+	return ((a.x * b.x) + (a.y * b.y) + (a.z * b.z));
 }
 
 double	len_v3(t_v3 v)

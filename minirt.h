@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:18:04 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/01 06:23:49 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/01 08:32:04 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@
 # include "./libft/libft.h"
 # include "keycode.h"
 # include <math.h>
+# include <stdbool.h>
 
-# define WIDTH 900
-# define HEIGHT 900
+# define WIDTH 1000
+# define HEIGHT 1000
 
 # define SPHERE 1
 # define PLANE 2
@@ -170,8 +171,8 @@ int		key_press(int keycode, t_all **all);
 void	create_everything(t_all **all);
 void	key_hooks(t_all **all);
 // INTERSECTION CHECK FUNCTIONS
-int		check_intersection(t_all **all, t_ray *tmp);
-void	sphere_intersect(t_all **all, t_ray *vector);
+bool	check_intersection(t_all **all, t_ray *tmp);
+void	sphere_intersect(t_all **all, t_ray *vector, bool *a);
 // VECTOR CALCULATION FUNCTIONS
 double	dot_v3(t_v3 a, t_v3 b);
 t_v3	subtract_v3(t_v3 a, t_v3 b);

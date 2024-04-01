@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 02:51:08 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/01 05:48:42 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/01 08:18:14 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	add_color(int color_a, int color_b)
 	int		b;
 
 	r = clamp((color_a >> 16) + (color_b >> 16));
-	g = clamp((color_a >> 8 & 255) + (color_b >> 9 & 255));
+	g = clamp((color_a >> 8 & 255) + (color_b >> 8 & 255));
 	b = clamp((color_a & 255) + (color_b & 255));
 	return ((r << 16) | (g << 8) | b);
 }

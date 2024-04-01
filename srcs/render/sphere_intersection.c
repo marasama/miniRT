@@ -6,13 +6,13 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 18:52:23 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/01 03:49:40 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/01 07:35:02 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minirt.h"
 
-void	calc_discriminant(t_sphere *sp, t_ray *ray, double *roots)
+void	calc_roots(t_sphere *sp, t_ray *ray, double *roots, bool *a)
 {
 	t_v3	v2sp;
 	double	dot_a;
@@ -32,11 +32,11 @@ void	calc_discriminant(t_sphere *sp, t_ray *ray, double *roots)
 		if (roots[i] < ray->hit.hitNum)
 		{
 				ray->hit.hitNum = roots[i];
-				ray->hit.hitPoint = normalize(add_v3(ray->origin, scale_v3(ray->direction, roots[i])));
+				ray->hit.hitPoint = add_v3(ray->origin, scale_v3(ray->direction, roots[i]));
 				ray->hit.normal = normalize(subtract_v3(ray->hit.hitPoint, sp->cordnts));
 				ray->hit.color = colorToInt(sp->color);
 				ray->hit.type = SPHERE;
-				ray->hit.object = sp;
+				*a = true;
 				/* ray->hit.hitPoint = normalize(ray->hit.hitPoint);
 				ray->color.green = ray->hit.hitPoint.x * 255;
 				ray->color.blue = ray->hit.hitPoint.y * 255;
@@ -46,7 +46,7 @@ void	calc_discriminant(t_sphere *sp, t_ray *ray, double *roots)
 	}
 }
 
-void	sphere_intersect(t_all **all, t_ray *ray)
+void	sphere_intersect(t_all **all, t_ray *ray, bool *a)
 {
 	t_list		*sphere_list;
 	t_sphere	*tmp;
@@ -58,8 +58,7 @@ void	sphere_intersect(t_all **all, t_ray *ray)
 	while (sphere_list != NULL)
 	{
 		tmp = sphere_list->content;
-		calc_discriminant(tmp, ray, roots);
-		
+		calc_roots(tmp, ray, roots, a);
 		sphere_list = sphere_list->next;
 	}
 }

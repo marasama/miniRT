@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 02:11:50 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/01 06:24:17 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/01 08:17:04 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,27 +45,28 @@ void	init_cam(t_camera *cam)
 	cam->props.w = normalize(cross_v3(cam->normal, cam->props.u));
 }
 
-int	check_shadow(t_all **all, t_light *light, t_list *spheres, t_hit hit)
+bool	check_shadow(t_all **all, t_light *light, t_hit hit)
 {
 	t_ray	shadow;
 
 	shadow.origin = add_v3(hit.hitPoint, scale_v3(hit.normal, 0.0001));
 	shadow.direction = normalize(subtract_v3(light->cordnts, shadow.origin));
 	shadow.hit.object = hit.object;
+	shadow.hit.hitNum = INFINITY;
 	return (check_intersection(all, &shadow));
 }
 
 int	re_color(t_all **all, t_ray *ray)
 {
 	int		ambient;
-	t_light *light;
+	t_light	*light;
 	int		color;
-	int		check;
+	bool	check;
 
-	ambient = scale_color(colorToInt((*all)->world->ambient->color), (*all)->world->ambient->l_ratio);
 	light = (*all)->world->light;
+	ambient = scale_color(colorToInt((*all)->world->ambient->color), (*all)->world->ambient->l_ratio);
 	color = color_product(ray->hit.color, ambient);
-	check = check_shadow(all, light, (*all)->world->spheres, ray->hit);
+	check = check_shadow(all, light, ray->hit);
 	color = add_color(color, check * color_comp(*light, ray->hit));
 	return (color);
 }
