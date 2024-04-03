@@ -6,7 +6,7 @@
 #    By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/13 04:33:34 by adurusoy          #+#    #+#              #
-#    Updated: 2024/04/01 10:24:32 by adurusoy         ###   ########.fr        #
+#    Updated: 2024/04/03 08:09:34 by adurusoy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ SRC = ./srcs/check_funcs/check_funcs.c \
 		./srcs/vector_funcs/vector_funcs.c \
 		./srcs/vector_funcs/vector_funcs2.c \
 		./srcs/vector_funcs/vector_funcs3.c \
-		./srcs/main.c
+		./srcs/main.c \
+		./srcs/save_bmp.c
 
 OBJS = $(SRC:.c=.o)
 

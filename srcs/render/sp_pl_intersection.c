@@ -6,11 +6,12 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 18:52:23 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/01 10:25:08 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/03 07:38:51 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minirt.h"
+#include <stdio.h>
 
 void	calc_roots(t_sphere *sp, t_ray *ray, double *roots)
 {
@@ -18,38 +19,44 @@ void	calc_roots(t_sphere *sp, t_ray *ray, double *roots)
 	double	dot_a;
 	double	dot_b;
 	double	dot_c;
-	int		i;
+	double	discr;
 
-	i = 0;
+
 	v2sp = subtract_v3(ray->origin, sp->cordnts);
 	dot_a = dot_v3(ray->direction, ray->direction);
 	dot_b = dot_v3(v2sp, ray->direction) * 2.0f;
 	dot_c = dot_v3(v2sp, v2sp) - (sp->diameter * sp->diameter / 4.0f);
-	roots[0] = (-dot_b - sqrt(dot_b * dot_b - dot_a * dot_c * 4.0f))
-		/ (dot_a * 2);
-	roots[1] = (-dot_b + sqrt(dot_b * dot_b - dot_a * dot_c * 4.0f))
-		/ (dot_a * 2);
+	discr = dot_b * dot_b - (4  * dot_a * dot_c);
+	if (discr < 0)
+	{
+		roots[0] = INFINITY;
+		roots[1] = INFINITY;
+	}
+	else
+	{
+		roots[0] = ((-dot_b - sqrt(discr)) / (dot_a * 2));
+		roots[1] = ((-dot_b - sqrt(discr)) / (dot_a * 2));
+	}
 }
 
-void	change_hit(t_sphere *sp, t_ray *ray, double *roots, bool *a)
+void	change_sphere_hit(t_sphere *sp, t_ray *ray, double *roots, bool *a)
 {
 	int	i;
 
 	i = 0;
-	while (i < 2)
+	if (roots[0] > roots[1])
+		i = 1;
+	if (roots[i] < ray->hit.hit_len)
 	{
-		if (roots[i] < ray->hit.hit_len)
-		{
-			ray->hit.hit_len = roots[i];
-			ray->hit.hit_point = add_v3(ray->origin,
-					scale_v3(ray->direction, roots[i]));
-			ray->hit.normal = normalize(subtract_v3(ray->hit.hit_point,
-						sp->cordnts));
-			ray->hit.color = sp->color;
-			ray->hit.type = SPHERE;
-			*a = true;
-		}
-		i++;
+		ray->hit.hit_len = roots[i];
+		ray->hit.hit_point = add_v3(ray->origin,
+				scale_v3(ray->direction, roots[i]));
+		ray->hit.normal = normalize(subtract_v3(ray->hit.hit_point,
+					sp->cordnts));
+		ray->hit.hit_point =  add_v3(ray->hit.hit_point,scale_v3(ray->hit.normal, EPSILON)) ;
+		ray->hit.color = sp->color;
+		ray->hit.type = SPHERE;
+		*a = true;
 	}
 }
 
@@ -66,7 +73,7 @@ void	sphere_intersect(t_all **all, t_ray *ray, bool *a)
 	{
 		tmp = sphere_list->content;
 		calc_roots(tmp, ray, roots);
-		change_hit(tmp, ray, roots, a);
+		change_sphere_hit(tmp, ray, roots, a);
 		sphere_list = sphere_list->next;
 	}
 }
@@ -79,11 +86,9 @@ void	change_plane_hit(t_plane *pl, t_ray *ray, double parallel, bool *a)
 		/ parallel;
 	if (ray->hit.hit_len > hit && hit > EPSILON)
 	{
-		if (parallel > 0)
-			pl->normal = scale_v3(pl->normal, -1);
 		ray->hit.hit_len = hit;
-		ray->hit.hit_point = normalize(subtract_v3(ray->hit.hit_point,
-					pl->cordnts));
+		ray->hit.hit_point = add_v3(ray->origin, scale_v3(ray->direction, hit));
+		ray->hit.hit_point = add_v3(ray->hit.hit_point, scale_v3(pl->normal, EPSILON));
 		ray->hit.normal = pl->normal;
 		ray->hit.color = pl->color;
 		ray->hit.type = PLANE;

@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 02:11:50 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/01 10:12:30 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/03 08:18:34 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	create_everything(t_all **all)
 			x++;
 		}
 	}
+	//save_bmp("zort", (*all)->mlx->image);
 	mlx_put_image_to_window((*all)->mlx->ptr, (*all)->mlx->window,
 		(*all)->mlx->image, 0, 0);
 }

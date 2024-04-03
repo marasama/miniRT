@@ -6,11 +6,12 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 05:30:51 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/01 10:12:30 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/03 09:41:06 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minirt.h"
+#include <stdio.h>
 
 int	color_product(int color_a, int color_b)
 {
@@ -27,51 +28,64 @@ int	color_product(int color_a, int color_b)
 	return ((r << 16) | (g << 8) | b);
 }
 
-float	light_intensity(t_light light, t_hit hit)
+double	light_intensity(t_light light, t_hit hit)
 {
 	t_v3	light_direction;
-	float	light_ratio;
-	float	distance;
-	float	intensity;
+	double	light_ratio;
+	double	distance;
+	double	intensity;
 
 	light_direction = subtract_v3(light.cordnts, hit.hit_point);
 	distance = dot_v3(light_direction, light_direction);
 	light_ratio = dot_v3(normalize(light_direction), hit.normal);
 	if (light_ratio <= 0)
 		return (0);
-	intensity = (light.brightness * light_ratio * REFLECT)
-		/ (4.0 * PI * distance);
+	intensity = light.brightness * light_ratio;
 	return (intensity);
 }
 
 int	color_comp(t_light light, t_hit hit)
 {
-	int		object_color;
 	int		color;
 
 	color = 0;
-	object_color = hit.color;
-	color = add_color(color, scale_color(object_color,
+	color = add_color(color, scale_color(hit.color,
 				light_intensity(light, hit)));
 	color = color_product(color, light.color);
 	return (color);
 }
 
-bool	check_shadow(t_all **all, t_light *light, t_hit hit)
+int	check_shadow(t_all **all, t_light *light, t_hit hit)
 {
 	t_ray	shadow;
+	t_v3		light_direction;
+	double	distance;
+	t_v3	first_hit;
+	double	hit_len;
 
-	shadow.origin = add_v3(hit.hit_point, scale_v3(hit.normal, 0.0001));
-	shadow.direction = normalize(subtract_v3(light->cordnts, shadow.origin));
-	shadow.hit.object = hit.object;
-	shadow.hit.hit_len = INFINITY;
-	return (check_intersection(all, &shadow));
+	light_direction = subtract_v3(light->cordnts, hit.hit_point);
+	distance = sqrt(dot_v3(light_direction, light_direction));
+	shadow.origin = add_v3(hit.hit_point,scale_v3(hit.normal, 0.001)) ;
+	shadow.direction = normalize(light_direction);
+	shadow.hit.hit_len = distance;
+	shadow.hit.type = 0;
+	if (check_intersection(all, &shadow))
+	{
+		first_hit = subtract_v3(shadow.hit.hit_point, shadow.origin);
+		hit_len = sqrt(dot_v3(first_hit, first_hit));
+		if (hit.type == SPHERE)
+			printf("%d - %f - %f\n",shadow.hit.type, hit_len, distance); 
+		if (hit_len < distance && hit.type == SPHERE)
+			return (1);
+	}
+	return (0);
 }
 
 int	re_color(t_all **all, t_ray *ray)
 {
 	int		ambient;
 	t_light	*light;
+	int		l_color;
 	int		color;
 	bool	check;
 
@@ -79,7 +93,8 @@ int	re_color(t_all **all, t_ray *ray)
 	ambient = scale_color((*all)->world->ambient->color,
 			(*all)->world->ambient->l_ratio);
 	color = color_product(ray->hit.color, ambient);
-	check = check_shadow(all, light, ray->hit);
-	color = add_color(color, check * color_comp(*light, ray->hit));
+	if (check_shadow(all, light, ray->hit))
+		return (color);
+	color = add_color(color, color_comp(*light, ray->hit));
 	return (color);
 }

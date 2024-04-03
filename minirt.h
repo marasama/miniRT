@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:18:04 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/01 10:24:06 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/03 09:28:01 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,13 @@
 # include <math.h>
 # include <stdbool.h>
 
-# define WIDTH 1000
-# define HEIGHT 1000
+# define WIDTH 720
+# define HEIGHT 720
 
 # define SPHERE 1
 # define PLANE 2
 # define CYLINDER 3
 
-# define REFLECT 1000
 # define PI 3.141592653589793238462643383279502984
 # define EPSILON 0.0001
 
@@ -199,7 +198,7 @@ int		add_color(int color_a, int color_b);
 int		scale_color(int color, float c);
 int		color_product(int color_a, int color_b);
 int		color_comp(t_light light, t_hit hit);
-bool	check_shadow(t_all **all, t_light *light, t_hit hit);
 int		re_color(t_all **all, t_ray *ray);
+void	save_bmp(const char *filename, const unsigned char *data);
 
 #endif
