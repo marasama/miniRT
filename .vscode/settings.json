@@ -1,8 +1,0 @@
-{
-	"editor.fontFamily": "Minecraftia",
-	"editor.fontSize": 14,
-	"files.associations": {
-		"cmath": "c",
-		"math.h": "c"
-	}
-}
