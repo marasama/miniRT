@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 05:30:51 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/03 09:41:06 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/04 02:56:46 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	check_shadow(t_all **all, t_light *light, t_hit hit)
 
 	light_direction = subtract_v3(light->cordnts, hit.hit_point);
 	distance = sqrt(dot_v3(light_direction, light_direction));
-	shadow.origin = add_v3(hit.hit_point,scale_v3(hit.normal, 0.001)) ;
+	shadow.origin = add_v3(hit.hit_point,scale_v3(hit.normal,  EPSILON)) ;
 	shadow.direction = normalize(light_direction);
 	shadow.hit.hit_len = distance;
 	shadow.hit.type = 0;
@@ -73,9 +73,7 @@ int	check_shadow(t_all **all, t_light *light, t_hit hit)
 	{
 		first_hit = subtract_v3(shadow.hit.hit_point, shadow.origin);
 		hit_len = sqrt(dot_v3(first_hit, first_hit));
-		if (hit.type == SPHERE)
-			printf("%d - %f - %f\n",shadow.hit.type, hit_len, distance); 
-		if (hit_len < distance && hit.type == SPHERE)
+		if (shadow.hit.hit_len > EPSILON)
 			return (1);
 	}
 	return (0);

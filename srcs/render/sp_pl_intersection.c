@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 18:52:23 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/03 07:38:51 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/04 02:48:40 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,13 @@ void	change_sphere_hit(t_sphere *sp, t_ray *ray, double *roots, bool *a)
 	i = 0;
 	if (roots[0] > roots[1])
 		i = 1;
-	if (roots[i] < ray->hit.hit_len)
+	if (roots[i] < ray->hit.hit_len && roots[i] > EPSILON)
 	{
 		ray->hit.hit_len = roots[i];
 		ray->hit.hit_point = add_v3(ray->origin,
 				scale_v3(ray->direction, roots[i]));
 		ray->hit.normal = normalize(subtract_v3(ray->hit.hit_point,
 					sp->cordnts));
-		ray->hit.hit_point =  add_v3(ray->hit.hit_point,scale_v3(ray->hit.normal, EPSILON)) ;
 		ray->hit.color = sp->color;
 		ray->hit.type = SPHERE;
 		*a = true;

@@ -6,7 +6,7 @@
 #    By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/13 04:33:34 by adurusoy          #+#    #+#              #
-#    Updated: 2024/04/03 08:09:34 by adurusoy         ###   ########.fr        #
+#    Updated: 2024/04/03 23:32:01 by adurusoy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRC = ./srcs/check_funcs/check_funcs.c \
 		./srcs/input_funcs/take_input.c \
 		./srcs/render/create_image.c \
 		./srcs/render/sp_pl_intersection.c \
+		./srcs/render/cy_intersection.c \
 		./srcs/render/check_intersection.c \
 		./srcs/vector_funcs/vector_funcs.c \
 		./srcs/vector_funcs/vector_funcs2.c \

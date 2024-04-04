@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:18:04 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/03 09:28:01 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/04 02:49:08 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <math.h>
 # include <stdbool.h>
 
-# define WIDTH 720
+# define WIDTH 1280
 # define HEIGHT 720
 
 # define SPHERE 1
