@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:18:04 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/04 02:49:08 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/05 14:30:46 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include <math.h>
 # include <stdbool.h>
 
-# define WIDTH 1280
-# define HEIGHT 720
+# define WIDTH 400
+# define HEIGHT 400
 
 # define SPHERE 1
 # define PLANE 2
@@ -175,6 +175,7 @@ int		key_press2(int keycode, t_all **all);
 bool	check_intersection(t_all **all, t_ray *tmp);
 void	sphere_intersect(t_all **all, t_ray *ray, bool *a);
 void	plane_intersect(t_all **all, t_ray *ray, bool *a);
+void	cylinder_intersect(t_list *cy, t_ray *ray, bool *a);
 // VECTOR CALCULATION FUNCTIONS
 double	dot_v3(t_v3 a, t_v3 b);
 t_v3	subtract_v3(t_v3 a, t_v3 b);
