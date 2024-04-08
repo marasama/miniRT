@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:18:04 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/05 14:30:46 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/07 16:33:49 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include <math.h>
 # include <stdbool.h>
 
-# define WIDTH 400
-# define HEIGHT 400
+# define WIDTH 1000
+# define HEIGHT 1000
 
 # define SPHERE 1
 # define PLANE 2

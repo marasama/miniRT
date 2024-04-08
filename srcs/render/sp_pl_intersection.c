@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 18:52:23 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/04 02:48:40 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/07 23:20:38 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	calc_roots(t_sphere *sp, t_ray *ray, double *roots)
 	double	dot_c;
 	double	discr;
 
-
 	v2sp = subtract_v3(ray->origin, sp->cordnts);
 	dot_a = dot_v3(ray->direction, ray->direction);
 	dot_b = dot_v3(v2sp, ray->direction) * 2.0f;
@@ -35,7 +34,7 @@ void	calc_roots(t_sphere *sp, t_ray *ray, double *roots)
 	else
 	{
 		roots[0] = ((-dot_b - sqrt(discr)) / (dot_a * 2));
-		roots[1] = ((-dot_b - sqrt(discr)) / (dot_a * 2));
+		roots[1] = ((-dot_b + sqrt(discr)) / (dot_a * 2));
 	}
 }
 

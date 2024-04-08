@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 02:11:50 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/03 08:18:34 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/07 16:03:37 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,24 @@ void	init_cam(t_camera *cam)
 	cam->props.w = normalize(cross_v3(cam->normal, cam->props.u));
 }
 
+int		put_background(int y)
+{
+	t_color	a;
+	double	intensity;
+	double	norm;
+
+	norm = ((2.0f * ((float)y)) / HEIGHT) - 1;
+	a.red = 115;
+	a.green = 215;
+	a.blue = 255;
+	intensity = 1 - fabs(y) / (double)HEIGHT;
+	intensity = fabs(intensity);
+	a.red *= intensity;
+	a.green *= intensity;
+	a.blue *= intensity;
+	return (color_to_int(a));
+}
+
 void	create_everything(t_all **all)
 {
 	int		x;
@@ -67,16 +85,15 @@ void	create_everything(t_all **all)
 	mlx_clear_window((*all)->mlx->ptr, (*all)->mlx->window);
 	while (++y < HEIGHT)
 	{
-		x = 0;
-		while (x < WIDTH)
+		x = -1;
+		while (++x < WIDTH)
 		{
 			tmp = gen_ray(all, x, y);
 			if (!check_intersection(all, &tmp))
-				color = 0;
+				color = put_background(tmp.direction.y);
 			else
 				color = re_color(all, &tmp);
 			set_color(all, x, y, int_to_color(color));
-			x++;
 		}
 	}
 	//save_bmp("zort", (*all)->mlx->image);
