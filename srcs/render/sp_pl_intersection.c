@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 18:52:23 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/07 23:20:38 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:05:57 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	calc_roots(t_sphere *sp, t_ray *ray, double *roots)
 	dot_a = dot_v3(ray->direction, ray->direction);
 	dot_b = dot_v3(v2sp, ray->direction) * 2.0f;
 	dot_c = dot_v3(v2sp, v2sp) - (sp->diameter * sp->diameter / 4.0f);
-	discr = dot_b * dot_b - (4  * dot_a * dot_c);
+	discr = dot_b * dot_b - (4 * dot_a * dot_c);
 	if (discr < 0)
 	{
 		roots[0] = INFINITY;
@@ -86,7 +86,8 @@ void	change_plane_hit(t_plane *pl, t_ray *ray, double parallel, bool *a)
 	{
 		ray->hit.hit_len = hit;
 		ray->hit.hit_point = add_v3(ray->origin, scale_v3(ray->direction, hit));
-		ray->hit.hit_point = add_v3(ray->hit.hit_point, scale_v3(pl->normal, EPSILON));
+		ray->hit.hit_point = add_v3(ray->hit.hit_point, \
+						scale_v3(pl->normal, EPSILON));
 		ray->hit.normal = pl->normal;
 		ray->hit.color = pl->color;
 		ray->hit.type = PLANE;

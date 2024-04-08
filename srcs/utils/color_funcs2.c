@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 05:30:51 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/04 02:56:46 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:16:52 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,14 @@ int	color_comp(t_light light, t_hit hit)
 int	check_shadow(t_all **all, t_light *light, t_hit hit)
 {
 	t_ray	shadow;
-	t_v3		light_direction;
+	t_v3	light_direction;
 	double	distance;
 	t_v3	first_hit;
 	double	hit_len;
 
 	light_direction = subtract_v3(light->cordnts, hit.hit_point);
 	distance = sqrt(dot_v3(light_direction, light_direction));
-	shadow.origin = add_v3(hit.hit_point,scale_v3(hit.normal,  EPSILON)) ;
+	shadow.origin = add_v3(hit.hit_point, scale_v3(hit.normal, EPSILON));
 	shadow.direction = normalize(light_direction);
 	shadow.hit.hit_len = distance;
 	shadow.hit.type = 0;

@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 00:21:09 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/08 16:52:30 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:14:50 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,6 @@ void	set_cylinder(t_all **all, const char *a)
 	take_double(a, &b, &(new_cylinder->height));
 	ft_isws(a, &b, 0);
 	take_color(a + b, &(new_cylinder->color));
+	new_cylinder->normal = normalize(new_cylinder->normal);
 	print_cylinder(new_cylinder);
 }

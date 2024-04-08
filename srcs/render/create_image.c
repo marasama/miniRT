@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 02:11:50 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/07 16:03:37 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:17:51 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	init_cam(t_camera *cam)
 	cam->props.w = normalize(cross_v3(cam->normal, cam->props.u));
 }
 
-int		put_background(int y)
+int	put_background(int y)
 {
 	t_color	a;
 	double	intensity;
@@ -96,7 +96,6 @@ void	create_everything(t_all **all)
 			set_color(all, x, y, int_to_color(color));
 		}
 	}
-	//save_bmp("zort", (*all)->mlx->image);
 	mlx_put_image_to_window((*all)->mlx->ptr, (*all)->mlx->window,
 		(*all)->mlx->image, 0, 0);
 }

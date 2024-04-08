@@ -6,7 +6,7 @@
 #    By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/13 04:33:34 by adurusoy          #+#    #+#              #
-#    Updated: 2024/04/03 23:32:01 by adurusoy         ###   ########.fr        #
+#    Updated: 2024/04/08 17:19:01 by adurusoy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,24 +19,30 @@ INCFLAGS = -I minishell.h -I ./libft/libft.h
 CC = gcc
 
 SRC = ./srcs/check_funcs/check_funcs.c \
+		\
 		./srcs/utils/utils.c \
 		./srcs/utils/utils2.c \
 		./srcs/utils/utils3.c \
+		\
 		./srcs/utils/color_funcs.c \
 		./srcs/utils/color_funcs2.c \
+		\
 		./srcs/print_objects/print_objects.c \
 		./srcs/print_objects/print_objects2.c \
+		\
 		./srcs/input_funcs/take_input2.c \
 		./srcs/input_funcs/take_input.c \
+		\
 		./srcs/render/create_image.c \
 		./srcs/render/sp_pl_intersection.c \
 		./srcs/render/cy_intersection.c \
 		./srcs/render/check_intersection.c \
+		\
 		./srcs/vector_funcs/vector_funcs.c \
 		./srcs/vector_funcs/vector_funcs2.c \
 		./srcs/vector_funcs/vector_funcs3.c \
+		\
 		./srcs/main.c \
-		./srcs/save_bmp.c
 
 OBJS = $(SRC:.c=.o)
 
