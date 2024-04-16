@@ -6,119 +6,110 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 00:20:29 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/08 16:39:03 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/15 20:50:38 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minirt.h"
+#include <stdio.h>
 
-void	take_color(const char *a, int *color)
+int	take_color(t_all **all, const char *a)
 {
-	int		b;
-	t_color	rgb;
+	t_color color;
+	char	**digits;
 
-	b = 0;
-	rgb.red = ft_atoi(a);
-	while (ft_isdigit(a[b]))
-		b++;
-	b++;
-	rgb.green = ft_atoi(a + b);
-	while (ft_isdigit(a[b]))
-		b++;
-	b++;
-	rgb.blue = ft_atoi(a + b);
-	(*color) = color_to_int(rgb);
+	digits = ft_split(a, ',');
+	if (!digits || !digits[0] || !digits[1] || !digits[2] || digits[3])
+	{
+		free_words(digits);
+		print_error(all, 0);
+	}
+	color.red = clamp(ft_atoi(digits[0]));
+	color.green = clamp(ft_atoi(digits[1]));
+	color.blue = clamp(ft_atoi(digits[2]));
+	free_words(digits);
+	return (color_to_int(color));
 }
 
-void	take_v3(const char *a, t_v3 *v3)
+t_v3	take_v3(t_all **all, const char *a)
 {
-	int		b;
+	char	**digits;
+	t_v3	v;
 
-	b = 0;
-	v3->x = ft_strtod(a);
-	while ((ft_isdigit(a[b]) || a[b] == '.' || a[b] == '-' || a[b] == '+')
-		&& a[b])
-		b++;
-	a += b + 1;
-	b = 0;
-	v3->y = ft_strtod(a);
-	while ((ft_isdigit(a[b]) || a[b] == '.' || a[b] == '-' || a[b] == '+')
-		&& a[b])
-		b++;
-	a += b + 1;
-	b = 0;
-	v3->z = ft_strtod(a);
+	digits = ft_split(a, ',');
+	if (!digits || !digits[0] || !digits[1] || !digits[2] || digits[3])
+	{
+		free_words(digits);
+		print_error(all, 0);
+	}
+	v.x = ft_strtod(digits[0]);	
+	v.y = ft_strtod(digits[1]);
+	v.z = ft_strtod(digits[2]);
+	free_words(digits);
+	return (v);
 }
 
-void	set_camera(t_all **all, const char *a)
+void	set_camera(t_all **all, char **words, int count)
 {
-	int		b;
-
+	if (count != 4)
+	{
+		free_words(words);
+		print_error(all, 0);
+	}
 	if ((*all)->world->camera != NULL)
+	{
+		free_words(words);
 		print_error(all, 5);
+	}
 	(*all)->world->camera = (t_camera *)malloc(sizeof(t_camera));
+	if ((*all)->world->camera == NULL)
+	{
+		free_words(words);
+		print_error(all, 4);
+	}
 	ft_lstadd_front(&(*all)->mallocs, ft_lstnew((*all)->world->camera));
-	b = 0;
-	ft_isws(a, &b, 0);
-	b++;
-	ft_isws(a, &b, 0);
-	take_v3(a + b, &((*all)->world->camera->cordnts));
-	while ((ft_isdigit(a[b]) || a[b] == '.' || a[b] == '-' || a[b] == '+'
-			|| a[b] == ',') && a[b])
-		b++;
-	ft_isws(a, &b, 0);
-	take_v3(a + b, &((*all)->world->camera->normal));
-	while ((ft_isdigit(a[b]) || a[b] == '.' || a[b] == '-' || a[b] == '+'
-			|| a[b] == ',') && a[b])
-		b++;
-	ft_isws(a, &b, 0);
-	(*all)->world->camera->fov = ft_strtod(a + b);
+	(*all)->world->camera->cordnts = take_v3(all, words[1]);
+	(*all)->world->camera->normal = take_v3(all ,words[2]);
+	(*all)->world->camera->fov = ft_strtod(words[3]);
 	print_camera((*all)->world->camera);
 }
 
-void	set_ambient(t_all **all, const char *a)
+void	set_ambient(t_all **all, char **words, int count)
 {
-	int		b;
-
+	if (count != 3)
+	{
+		free_words(words);
+		print_error(all, 0);
+	}
 	if ((*all)->world->ambient != NULL)
+	{
+		free_words(words);
 		print_error(all, 5);
+	}
 	(*all)->world->ambient = (t_ambient *)malloc(sizeof(t_ambient));
+	if ((*all)->world->ambient == NULL)
+	{
+		free_words(words);
+		print_error(all, 4);
+	}
 	ft_lstadd_front(&(*all)->mallocs, ft_lstnew((*all)->world->ambient));
-	b = 0;
-	ft_isws(a, &b, 0);
-	b++;
-	ft_isws(a, &b, 0);
-	(*all)->world->ambient->l_ratio = ft_strtod(a + b);
-	while ((ft_isdigit(a[b]) || a[b] == '.' || a[b] == '-' || a[b] == '+'
-			|| a[b] == ',') && a[b])
-		b++;
-	ft_isws(a, &b, 0);
-	take_color(a + b, &((*all)->world->ambient->color));
+	(*all)->world->ambient->l_ratio = ft_strtod(words[1]);
+	(*all)->world->ambient->color = take_color(all, words[2]);
 	print_ambient((*all)->world->ambient);
 }
 
-void	set_light(t_all **all, const char *a)
+void	set_light(t_all **all, char **words, int count)
 {
-	int		b;
-
+	if (count != 4)
+		print_error(all, 0);
 	if ((*all)->world->light != NULL)
 		print_error(all, 5);
 	(*all)->world->light = (t_light *)malloc(sizeof(t_light));
+	if ((*all)->world->light == NULL)
+		print_error(all, 4);
 	ft_lstadd_front(&(*all)->mallocs, ft_lstnew((*all)->world->light));
-	b = 0;
-	ft_isws(a, &b, 0);
-	b++;
-	ft_isws(a, &b, 0);
-	take_v3(a + b, &((*all)->world->light->cordnts));
-	while ((ft_isdigit(a[b]) || a[b] == '.' || a[b] == '-' || a[b] == '+'
-			|| a[b] == ',') && a[b])
-		b++;
-	ft_isws(a, &b, 0);
-	(*all)->world->light->brightness = ft_strtod(a + b);
-	while ((ft_isdigit(a[b]) || a[b] == '.' || a[b] == '-' || a[b] == '+'
-			|| a[b] == ',') && a[b])
-		b++;
-	ft_isws(a, &b, 0);
-	take_color(a + b, &((*all)->world->light->color));
+	(*all)->world->light->cordnts = take_v3(all, words[1]);
+	(*all)->world->light->brightness = ft_strtod(words[2]);
+	(*all)->world->light->color = take_color(all, words[3]);
 	print_light((*all)->world->light);
 }

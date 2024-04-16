@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:18:04 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/07 16:33:49 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:02:56 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,22 +142,24 @@ typedef struct s_all
 	t_list	*mallocs;
 }	t_all;
 
+// UTILS FUNCTIONS
+void	free_words(char **a);
+char	**trim_words(t_all **all, char **a);
 void	print_error(t_all **all, int opt);
-int		ft_isws(const char *a, int *b, int c);
 double	ft_strtod(const char *a);
 void	free_everything(t_list **mem);
 void	print_error(t_all **all, int opt);
 void	check_args(t_all **all, int argc, char **argv);
 void	check_objects(t_all **all, const char *a);
 // SET OBJECTS FUNCTIONS
-void	take_color(const char *a, int *rgb);
-void	take_v3(const char *a, t_v3*v3);
-void	set_camera(t_all **all, const char *a);
-void	set_ambient(t_all **all, const char *a);
-void	set_light(t_all **all, const char *a);
-void	set_plane(t_all **all, const char *a);
-void	set_sphere(t_all **all, const char *a);
-void	set_cylinder(t_all **all, const char *a);
+int		take_color(t_all **all, const char *a);
+t_v3	take_v3(t_all **all, const char *a);
+void	set_camera(t_all **all, char **words, int count);
+void	set_ambient(t_all **all, char **words, int count);
+void	set_light(t_all **all, char **words, int count);
+void	set_plane(t_all **all, char **words, int count);
+void	set_sphere(t_all **all, char **words, int count);
+void	set_cylinder(t_all **all, char **words, int count);
 // PRINT OBJECTS FUNCTIONS
 void	print_camera(t_camera *asd);
 void	print_ambient(t_ambient *asd);
@@ -166,7 +168,7 @@ void	print_plane(t_plane *asd);
 void	print_sphere(t_sphere *asd);
 void	print_cylinder(t_cylinder *asd);
 // IMAGE CREATION FUNCTIONS
-int		destroy_exit(t_all **all);
+int		destroy_exit(int keycode, t_all **all);
 void	create_everything(t_all **all);
 void	key_hooks(t_all **all);
 int		key_press(int keycode, t_all **all);
@@ -200,6 +202,5 @@ int		scale_color(int color, float c);
 int		color_product(int color_a, int color_b);
 int		color_comp(t_light light, t_hit hit);
 int		re_color(t_all **all, t_ray *ray);
-void	save_bmp(const char *filename, const unsigned char *data);
 
 #endif

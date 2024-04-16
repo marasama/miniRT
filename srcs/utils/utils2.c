@@ -6,17 +6,20 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 18:45:39 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/01 09:55:21 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/15 20:30:35 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minirt.h"
 #include <stdio.h>
 
-int	destroy_exit(t_all **all)
+int	destroy_exit(int keycode, t_all **all)
 {
-	mlx_destroy_image((*all)->mlx->ptr, (*all)->mlx->image);
-	mlx_destroy_window((*all)->mlx->ptr, (*all)->mlx->window);
+	if (keycode != 0)
+	{
+		mlx_destroy_image((*all)->mlx->ptr, (*all)->mlx->image);
+		mlx_destroy_window((*all)->mlx->ptr, (*all)->mlx->window);
+	}
 	free_everything(&(*all)->world->planes);
 	free_everything(&(*all)->world->spheres);
 	free_everything(&(*all)->world->cylinders);
@@ -30,7 +33,7 @@ int	key_press(int keycode, t_all **all)
 	if (keycode == ESC)
 	{
 		printf("ESC \n");
-		destroy_exit(all);
+		destroy_exit(keycode, all);
 	}
 	else if (keycode == UP_ARROW)
 	{
@@ -70,9 +73,9 @@ double	min(double a, double b)
 
 int	clamp(int x)
 {
-	if (x > 255)
+	if (x >= 255)
 		return (255);
-	else if (x < 0)
+	else if (x <= 0)
 		return (0);
 	return (x);
 }

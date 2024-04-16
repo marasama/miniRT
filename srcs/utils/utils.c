@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 17:11:01 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/01 09:14:49 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/15 20:37:46 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,17 @@ double	ft_strtod(const char *a)
 	int		d;
 	double	f;
 	double	g;
+	int		sign;
 
+	sign = 1;
 	d = 0;
 	f = ft_atoi(a);
 	if (a[d] == '-' || a[d] == '+')
+	{
+		if (a[d] == '-')
+			sign = -1;
 		d++;
+	}
 	while (ft_isdigit(a[d]) && a[d])
 		d++;
 	if (a[d] != '.')
@@ -39,7 +45,7 @@ double	ft_strtod(const char *a)
 		f += (g / ft_pow(++d));
 	else
 		f -= (g / ft_pow(++d));
-	return (f);
+	return (f * sign);
 }
 
 int	ft_isws(const char *a, int *b, int c)
@@ -73,6 +79,8 @@ void	free_everything(t_list **mem)
 {
 	t_list	*tmp;
 
+	if (mem == NULL || *mem == NULL)
+		return ;
 	while ((*mem) != NULL)
 	{
 		tmp = (*mem);
@@ -100,11 +108,7 @@ void	print_error(t_all **all, int opt)
 		printf("\e[35mYou can only have one camera,");
 		printf("ambient or light object!!\e[0m\n");
 	}
-	free_everything(&(*all)->world->planes);
-	free_everything(&(*all)->world->spheres);
-	free_everything(&(*all)->world->cylinders);
-	free_everything(&(*all)->mallocs);
-	free(*all);
+	destroy_exit(0, all);
 	exit(1);
 }
 
@@ -126,7 +130,8 @@ void	check_args(t_all **all, int argc, char **argv)
 		a = ft_gnl(fd);
 		if (!a)
 			break ;
-		check_objects(all, a);
+		if (a[0] != '\0' && a[1] != '\0')
+			check_objects(all, a);
 		free(a);
 	}
 	close(fd);

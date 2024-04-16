@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:18:53 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/20 22:18:54 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/08 18:28:51 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ char	**ft_split(char const *s, char c)
 	char	**res;
 
 	if (s == 0)
+		return (0);
+	if (!s)
 		return (0);
 	word_ct = ft_count_words(s, c);
 	res = (char **)malloc(sizeof(char *) * (word_ct + 1));

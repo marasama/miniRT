@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 05:30:51 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/08 17:16:52 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/09 16:30:09 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,19 @@ int	re_color(t_all **all, t_ray *ray)
 	t_light	*light;
 	int		l_color;
 	int		color;
-	bool	check;
 
+	color = 0;
 	light = (*all)->world->light;
-	ambient = scale_color((*all)->world->ambient->color,
-			(*all)->world->ambient->l_ratio);
-	color = color_product(ray->hit.color, ambient);
+	if ((*all)->world->ambient != NULL)
+	{
+		ambient = scale_color((*all)->world->ambient->color, \
+				(*all)->world->ambient->l_ratio);
+		color = color_product(ray->hit.color, ambient);
+	}
+	else
+		color = ray->hit.color;
+	if (light == NULL)
+		return (color);
 	if (check_shadow(all, light, ray->hit))
 		return (color);
 	color = add_color(color, color_comp(*light, ray->hit));
