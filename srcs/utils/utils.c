@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 17:11:01 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/15 20:37:46 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/16 15:03:25 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	ft_isws(const char *a, int *b, int c)
 	return (0);
 }
 
-void	free_everything(t_list **mem)
+void	free_list(t_list **mem)
 {
 	t_list	*tmp;
 
@@ -106,33 +106,8 @@ void	print_error(t_all **all, int opt)
 	else if (opt == 5)
 	{
 		printf("\e[35mYou can only have one camera,");
-		printf("ambient or light object!!\e[0m\n");
+		printf("ambient and light object!!\e[0m\n");
 	}
 	destroy_exit(0, all);
 	exit(1);
-}
-
-void	check_args(t_all **all, int argc, char **argv)
-{
-	char	*a;
-	int		fd;
-
-	if (argc != 2)
-		print_error(all, 0);
-	a = ft_strrchr(argv[1], '.');
-	if (a == NULL || *(a + 1) != 'r' || *(a + 2) != 't')
-		print_error(all, 0);
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-		print_error(all, 1);
-	while (1)
-	{
-		a = ft_gnl(fd);
-		if (!a)
-			break ;
-		if (a[0] != '\0' && a[1] != '\0')
-			check_objects(all, a);
-		free(a);
-	}
-	close(fd);
 }

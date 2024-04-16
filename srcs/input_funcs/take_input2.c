@@ -5,78 +5,111 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/25 00:21:09 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/09 16:27:42 by adurusoy         ###   ########.fr       */
+/*   Created: 2024/03/25 00:20:29 by adurusoy          #+#    #+#             */
+/*   Updated: 2024/04/16 15:24:27 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minirt.h"
+#include <stdio.h>
 
-void	set_sphere(t_all **all, char **words, int count)
+int	take_color(t_all **all, const char *a)
 {
-	t_sphere	*new_sphere;
+	t_color color;
+	char	**digits;
 
+	digits = ft_split(a, ',');
+	if (!digits || !digits[0] || !digits[1] || !digits[2] || digits[3])
+	{
+		free_words(digits);
+		print_error(all, 0);
+	}
+	color.red = clamp(ft_atoi(digits[0]));
+	color.green = clamp(ft_atoi(digits[1]));
+	color.blue = clamp(ft_atoi(digits[2]));
+	free_words(digits);
+	return (color_to_int(color));
+}
+
+t_v3	take_v3(t_all **all, const char *a)
+{
+	char	**digits;
+	t_v3	v;
+
+	digits = ft_split(a, ',');
+	if (!digits || !digits[0] || !digits[1] || !digits[2] || digits[3])
+	{
+		free_words(digits);
+		print_error(all, 0);
+	}
+	v.x = ft_strtod(digits[0]);	
+	v.y = ft_strtod(digits[1]);
+	v.z = ft_strtod(digits[2]);
+	free_words(digits);
+	return (v);
+}
+
+void	set_camera(t_all **all, char **words, int count)
+{
 	if (count != 4)
 	{
 		free_words(words);
 		print_error(all, 0);
 	}
-	new_sphere = (t_sphere *)malloc(sizeof(t_sphere));
-	if (!new_sphere)
+	if ((*all)->world->camera != NULL)
+	{
+		free_words(words);
+		print_error(all, 5);
+	}
+	(*all)->world->camera = (t_camera *)malloc(sizeof(t_camera));
+	if ((*all)->world->camera == NULL)
 	{
 		free_words(words);
 		print_error(all, 4);
 	}
-	ft_lstadd_front(&(*all)->world->spheres, ft_lstnew(new_sphere));
-	new_sphere->cordnts = take_v3(all, words[1]);
-	new_sphere->diameter = ft_strtod(words[2]);
-	new_sphere->color = take_color(all, words[3]);
-	print_sphere(new_sphere);
+	ft_lstadd_front(&(*all)->mallocs, ft_lstnew((*all)->world->camera));
+	(*all)->world->camera->cordnts = take_v3(all, words[1]);
+	(*all)->world->camera->normal = take_v3(all ,words[2]);
+	(*all)->world->camera->fov = ft_strtod(words[3]);
+	//print_camera((*all)->world->camera);
 }
 
-void	set_plane(t_all **all, char **words, int count)
+void	set_ambient(t_all **all, char **words, int count)
 {
-	t_plane	*new_plane;
+	if (count != 3)
+	{
+		free_words(words);
+		print_error(all, 0);
+	}
+	if ((*all)->world->ambient != NULL)
+	{
+		free_words(words);
+		print_error(all, 5);
+	}
+	(*all)->world->ambient = (t_ambient *)malloc(sizeof(t_ambient));
+	if ((*all)->world->ambient == NULL)
+	{
+		free_words(words);
+		print_error(all, 4);
+	}
+	ft_lstadd_front(&(*all)->mallocs, ft_lstnew((*all)->world->ambient));
+	(*all)->world->ambient->l_ratio = ft_strtod(words[1]);
+	(*all)->world->ambient->color = take_color(all, words[2]);
+	//print_ambient((*all)->world->ambient);
+}
 
+void	set_light(t_all **all, char **words, int count)
+{
 	if (count != 4)
-	{
-		free_words(words);
 		print_error(all, 0);
-	}
-	new_plane = (t_plane *)malloc(sizeof(t_plane));
-	if (!new_plane)
-	{
-		free_words(words);
+	if ((*all)->world->light != NULL)
+		print_error(all, 5);
+	(*all)->world->light = (t_light *)malloc(sizeof(t_light));
+	if ((*all)->world->light == NULL)
 		print_error(all, 4);
-	}
-	ft_lstadd_front(&(*all)->world->planes, ft_lstnew(new_plane));
-	new_plane->cordnts = take_v3(all, words[1]);
-	new_plane->normal = normalize(take_v3(all, words[2]));
-	new_plane->color = take_color(all, words[3]);
-	print_plane(new_plane);
-}
-
-void	set_cylinder(t_all **all, char **words, int count)
-{
-	int			b;
-	t_cylinder	*new_cylinder;
-
-	if (count != 6)
-	{
-		free_words(words);
-		print_error(all, 0);
-	}
-	new_cylinder = (t_cylinder *)malloc(sizeof(t_cylinder));
-	if (!new_cylinder)
-	{
-		free_words(words);
-		print_error(all, 4);
-	}
-	ft_lstadd_front(&(*all)->world->cylinders, ft_lstnew(new_cylinder));
-	new_cylinder->cordnts = take_v3(all, words[1]);
-	new_cylinder->normal = normalize(take_v3(all, words[2]));
-	new_cylinder->diameter = ft_strtod(words[3]);
-	new_cylinder->height = ft_strtod(words[4]);
-	new_cylinder->color = take_color(all, words[5]);
-	print_cylinder(new_cylinder);
+	ft_lstadd_front(&(*all)->mallocs, ft_lstnew((*all)->world->light));
+	(*all)->world->light->cordnts = take_v3(all, words[1]);
+	(*all)->world->light->brightness = ft_strtod(words[2]);
+	(*all)->world->light->color = take_color(all, words[3]);
+	//print_light((*all)->world->light);
 }

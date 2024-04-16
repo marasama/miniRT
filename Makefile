@@ -6,7 +6,7 @@
 #    By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/13 04:33:34 by adurusoy          #+#    #+#              #
-#    Updated: 2024/04/08 17:19:01 by adurusoy         ###   ########.fr        #
+#    Updated: 2024/04/16 14:41:17 by adurusoy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,7 @@ INCFLAGS = -I minishell.h -I ./libft/libft.h
 
 CC = gcc
 
-SRC = ./srcs/check_funcs/check_funcs.c \
-		\
+SRC = \
 		./srcs/utils/utils.c \
 		./srcs/utils/utils2.c \
 		./srcs/utils/utils3.c \
@@ -30,6 +29,7 @@ SRC = ./srcs/check_funcs/check_funcs.c \
 		./srcs/print_objects/print_objects.c \
 		./srcs/print_objects/print_objects2.c \
 		\
+		./srcs/input_funcs/take_input3.c \
 		./srcs/input_funcs/take_input2.c \
 		./srcs/input_funcs/take_input.c \
 		\

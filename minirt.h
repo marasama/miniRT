@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:18:04 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/09 15:02:56 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/16 15:38:27 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,12 +144,12 @@ typedef struct s_all
 
 // UTILS FUNCTIONS
 void	free_words(char **a);
-char	**trim_words(t_all **all, char **a);
+char	**trim_words(t_all **all, char **a, int *count);
 void	print_error(t_all **all, int opt);
 double	ft_strtod(const char *a);
-void	free_everything(t_list **mem);
+void	free_list(t_list **mem);
 void	print_error(t_all **all, int opt);
-void	check_args(t_all **all, int argc, char **argv);
+void	take_inputs(t_all **all, int argc, char **argv);
 void	check_objects(t_all **all, const char *a);
 // SET OBJECTS FUNCTIONS
 int		take_color(t_all **all, const char *a);

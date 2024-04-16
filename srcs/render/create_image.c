@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 02:11:50 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/08 18:52:03 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/16 15:40:54 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ int	put_background(int y)
 	a.red = 115;
 	a.green = 215;
 	a.blue = 255;
-	intensity = 1 - fabs(y) / (double)HEIGHT;
-	intensity = fabs(intensity);
+	intensity = 1 - (double)abs(y) / (double)HEIGHT;
+	intensity = (double)abs(intensity);
 	a.red *= intensity;
 	a.green *= intensity;
 	a.blue *= intensity;
@@ -98,4 +98,5 @@ void	create_everything(t_all **all)
 	}
 	mlx_put_image_to_window((*all)->mlx->ptr, (*all)->mlx->window,
 		(*all)->mlx->image, 0, 0);
+	printf("zort\n");
 }
