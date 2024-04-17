@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 09:41:10 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/16 15:44:18 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/17 13:23:55 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,7 @@ char	**trim_words(t_all **all, char **a, int *count)
 	}
 	i = 0;
 	while (i < c)
-	{
-		free(a[i]);
-		i++;
-	}
+		free(a[i++]);
 	free(a);
 	words[i] = NULL;
 	*count = c;

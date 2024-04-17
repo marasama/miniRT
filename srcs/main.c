@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:17:45 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/16 15:42:08 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/17 13:09:05 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,9 @@ void	init_mlx(t_all **all)
 	(*all)->mlx->window = mlx_new_window((*all)->mlx->ptr, WIDTH, HEIGHT,
 			"Humble RayTracing Engine");
 	(*all)->mlx->image = mlx_new_image((*all)->mlx->ptr, WIDTH, HEIGHT);
-	(*all)->mlx->pixels = (unsigned char *)mlx_get_data_addr((*all)->mlx->image, \
-			&(*all)->mlx->bpp, &(*all)->mlx->size_line, &(*all)->mlx->endian);
+	(*all)->mlx->pixels = (unsigned char *)mlx_get_data_addr \
+		((*all)->mlx->image, &(*all)->mlx->bpp, \
+			&(*all)->mlx->size_line, &(*all)->mlx->endian);
 }
 
 int	main(int argc, char **argv)

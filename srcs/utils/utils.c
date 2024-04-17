@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 17:11:01 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/16 15:03:25 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/17 13:22:35 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,32 +20,26 @@ double	ft_strtod(const char *a)
 	int		d;
 	double	f;
 	double	g;
-	int		sign;
 
-	sign = 1;
 	d = 0;
 	f = ft_atoi(a);
-	if (a[d] == '-' || a[d] == '+')
-	{
-		if (a[d] == '-')
-			sign = -1;
+	while (a[d] == '-' || a[d] == '+')
 		d++;
-	}
 	while (ft_isdigit(a[d]) && a[d])
 		d++;
-	if (a[d] != '.')
+	if (a[d] != '.' || !a[d] || !ft_isdigit(a[d + 1]))
 		return (f);
 	d++;
 	a += d;
 	d = 0;
+	g = ft_atoi(a);
 	while (ft_isdigit(a[d]) && a[d])
 		d++;
-	g = ft_atoi(a);
 	if (f >= 0)
 		f += (g / ft_pow(++d));
 	else
 		f -= (g / ft_pow(++d));
-	return (f * sign);
+	return (f);
 }
 
 int	ft_isws(const char *a, int *b, int c)
