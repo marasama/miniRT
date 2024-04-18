@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 05:30:51 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/09 16:30:09 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/18 20:08:55 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,6 @@ int	check_shadow(t_all **all, t_light *light, t_hit hit)
 	shadow.hit.type = 0;
 	if (check_intersection(all, &shadow))
 	{
-		first_hit = subtract_v3(shadow.hit.hit_point, shadow.origin);
-		hit_len = sqrt(dot_v3(first_hit, first_hit));
 		if (shadow.hit.hit_len > EPSILON)
 			return (1);
 	}

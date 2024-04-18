@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 18:52:23 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/08 17:05:57 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/18 19:30:54 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ void	change_plane_hit(t_plane *pl, t_ray *ray, double parallel, bool *a)
 		ray->hit.normal = pl->normal;
 		ray->hit.color = pl->color;
 		ray->hit.type = PLANE;
-		ray->hit.object = pl;
 		(*a) = true;
 	}
 }

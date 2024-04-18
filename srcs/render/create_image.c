@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 02:11:50 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/17 13:02:00 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/18 20:10:55 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,10 @@ t_ray	make_ray(t_camera *cam, float *pixel)
 	horizantal = scale_v3(cam->props.w, pixel[0] * vview);
 	tmp.direction = add_v3(vertical, horizantal);
 	tmp.direction = add_v3(tmp.direction, cam->normal);
-	tmp.direction = add_v3(tmp.direction, cam->cordnts);
 	tmp.origin = cam->cordnts;
-	tmp.direction = normalize(subtract_v3(tmp.direction, tmp.origin));
+	tmp.direction = normalize(tmp.direction);
 	tmp.hit.color = 0;
 	tmp.hit.hit_len = INFINITY;
-	tmp.hit.object = NULL;
 	return (tmp);
 }
 
@@ -54,24 +52,6 @@ void	init_cam(t_camera *cam)
 	cam->props.w = normalize(cross_v3(cam->normal, cam->props.u));
 }
 
-int	put_background(int y)
-{
-	t_color	a;
-	double	intensity;
-	double	norm;
-
-	norm = ((2.0f * ((float)y)) / HEIGHT) - 1;
-	a.red = 115;
-	a.green = 215;
-	a.blue = 255;
-	intensity = 1 - (double)abs(y) / (double)HEIGHT;
-	intensity = (double)abs(intensity);
-	a.red *= intensity;
-	a.green *= intensity;
-	a.blue *= intensity;
-	return (color_to_int(a));
-}
-
 void	create_everything(t_all **all)
 {
 	int		x;
@@ -90,7 +70,7 @@ void	create_everything(t_all **all)
 		{
 			tmp = gen_ray(all, x, y);
 			if (!check_intersection(all, &tmp))
-				color = put_background(tmp.direction.y);
+				color = 0;
 			else
 				color = re_color(all, &tmp);
 			set_color(all, x, y, int_to_color(color));

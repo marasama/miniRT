@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 17:11:01 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/17 13:22:35 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/17 19:59:38 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ void	print_error(t_all **all, int opt)
 		printf("\e[35mMemory allocation error!!\e[0m\n");
 	else if (opt == 5)
 	{
-		printf("\e[35mYou can only have one camera,");
-		printf("ambient and light object!!\e[0m\n");
+		printf("\e[35mYou can only have one camera, \
+			ambient and light object!!\e[0m\n");
 	}
 	destroy_exit(0, all);
 	exit(1);

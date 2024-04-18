@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:18:04 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/16 15:38:27 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/17 19:58:17 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ typedef struct s_hit
 	t_v3	normal;
 	int		color;
 	int		type;
-	void	*object;
 }	t_hit;
 
 typedef struct s_ray
