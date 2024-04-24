@@ -6,14 +6,14 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:18:04 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/17 19:58:17 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/24 16:41:55 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# include "./minilibx/mlx.h"
+# include "./mlx/mlx.h"
 # include "./libft/libft.h"
 # include "keycode.h"
 # include <math.h>
