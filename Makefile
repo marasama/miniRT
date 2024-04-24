@@ -6,7 +6,7 @@
 #    By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/13 04:33:34 by adurusoy          #+#    #+#              #
-#    Updated: 2024/04/16 14:41:17 by adurusoy         ###   ########.fr        #
+#    Updated: 2024/04/24 16:41:33 by adurusoy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,9 +44,10 @@ SRC = \
 		\
 		./srcs/main.c \
 
+
 OBJS = $(SRC:.c=.o)
 
-MLX = -L./minilibx -lmlx -lXext -lX11 -lm -lbsd
+MLX = -Lmlx -lmlx -Imlx -framework OpenGL -framework AppKit
 
 all : $(NAME)
 
