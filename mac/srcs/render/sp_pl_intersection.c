@@ -6,12 +6,12 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 18:52:23 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/18 19:30:54 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:40:03 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minirt.h"
-#include <stdio.h>
+#include <math.h>
 
 void	calc_roots(t_sphere *sp, t_ray *ray, double *roots)
 {

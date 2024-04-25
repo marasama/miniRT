@@ -6,12 +6,13 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 18:45:39 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/25 17:34:13 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:43:54 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minirt.h"
 #include <stdio.h>
+
 
 int	destroy_exit(t_all **all)
 {

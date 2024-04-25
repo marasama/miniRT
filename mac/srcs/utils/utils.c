@@ -6,14 +6,12 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 17:11:01 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/25 13:12:09 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:43:39 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minirt.h"
-#include <fcntl.h>
 #include <stdio.h>
-#include <unistd.h>
 
 int	get_sign(const char *a)
 {

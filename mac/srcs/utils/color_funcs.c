@@ -6,12 +6,11 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 02:51:08 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/25 14:08:21 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:42:59 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minirt.h"
-#include <stdio.h>
 
 void	set_color(t_all **all, int x, int y, t_color color)
 {

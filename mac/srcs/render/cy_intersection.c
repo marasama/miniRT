@@ -6,11 +6,12 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 23:31:35 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/08 17:14:55 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:40:16 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minirt.h"
+#include <math.h>
 
 void	hit_cylinder_cap(t_cylinder *cy, t_ray *ray, double height, bool *a)
 {

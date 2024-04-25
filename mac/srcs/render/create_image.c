@@ -6,12 +6,13 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 02:11:50 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/18 20:10:55 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:39:44 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minirt.h"
 #include <stdio.h>
+#include <math.h>
 
 t_ray	make_ray(t_camera *cam, float *pixel)
 {

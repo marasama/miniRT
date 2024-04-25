@@ -6,12 +6,12 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 05:30:51 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/18 20:08:55 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:39:11 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minirt.h"
-#include <stdio.h>
+#include <math.h>
 
 int	color_product(int color_a, int color_b)
 {
