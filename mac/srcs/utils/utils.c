@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 17:11:01 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/25 12:04:24 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/25 13:12:09 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,27 @@
 #include <stdio.h>
 #include <unistd.h>
 
+int	get_sign(const char *a)
+{
+	int	sign;
+
+	sign = 1;
+	if (a[0] == '-')
+		sign = -1;
+	return (sign);
+}
+
 double	ft_strtod(const char *a)
 {
 	int		d;
 	double	f;
 	double	g;
+	int		sign;
 
+	sign = get_sign(a);
 	d = 0;
 	f = ft_atoi(a);
-	while (a[d] == '-' || a[d] == '+')
+	if (a[d] == '-' || a[d] == '+')
 		d++;
 	while (ft_isdigit(a[d]) && a[d])
 		d++;
@@ -35,7 +47,7 @@ double	ft_strtod(const char *a)
 	g = ft_atoi(a);
 	while (ft_isdigit(a[d]) && a[d])
 		d++;
-	if (f >= 0)
+	if (sign == 1)
 		f += (g / ft_pow(++d));
 	else
 		f -= (g / ft_pow(++d));

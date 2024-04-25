@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 02:51:08 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/08 18:43:23 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/25 14:08:21 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ int	add_color(int color_a, int color_b)
 	int		g;
 	int		b;
 
-	r = clamp((color_a >> 16) + (color_b >> 16));
-	g = clamp((color_a >> 8 & 255) + (color_b >> 8 & 255));
-	b = clamp((color_a & 255) + (color_b & 255));
+	r = clamp((color_a >> 16) + (color_b >> 16), 255, 0);
+	g = clamp((color_a >> 8 & 255) + (color_b >> 8 & 255), 255, 0);
+	b = clamp((color_a & 255) + (color_b & 255), 255, 0);
 	return ((r << 16) | (g << 8) | b);
 }
 
@@ -65,8 +65,8 @@ int	scale_color(int color, float c)
 	int		g;
 	int		b;
 
-	r = clamp(c * (color >> 16));
-	g = clamp(c * ((color >> 8) & 255));
-	b = clamp(c * (color & 255));
+	r = clamp(c * (color >> 16), 255, 0);
+	g = clamp(c * ((color >> 8) & 255), 255, 0);
+	b = clamp(c * (color & 255), 255, 0);
 	return ((r << 16) | (g << 8) | b);
 }

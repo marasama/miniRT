@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:18:04 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/25 12:03:38 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/25 14:34:33 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include <math.h>
 # include <stdbool.h>
 
-# define WIDTH 1000
-# define HEIGHT 1000
+# define WIDTH 400
+# define HEIGHT 400
 
 # define SPHERE 1
 # define PLANE 2
@@ -150,6 +150,7 @@ void	free_list(t_list **mem);
 void	print_error(t_all **all, int opt);
 void	take_inputs(t_all **all, int argc, char **argv);
 void	check_objects(t_all **all, const char *a);
+t_v3	check_normal(t_v3 *a);
 // SET OBJECTS FUNCTIONS
 int		take_color(t_all **all, const char *a);
 t_v3	take_v3(t_all **all, const char *a);
@@ -193,7 +194,7 @@ double	max(double a, double b);
 double	min(double a, double b);
 // COLOR FUNCS
 void	set_color(t_all **all, int x, int y, t_color color);
-int		clamp(int x);
+int		clamp(int x, int max, int min);
 int		color_to_int(t_color v3_color);
 t_color	int_to_color(int color);
 int		add_color(int color_a, int color_b);

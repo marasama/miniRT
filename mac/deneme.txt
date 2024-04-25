@@ -1,0 +1,303 @@
+--------AMBIENT---------
+RATIO OF LIGHT
+0.200000
+COLOR
+255	 255	 255
+------------------------
+---------CAMERA---------
+COORDINATES
+-50.000000	 0.000000	 20.000000
+ORIENTATION
+1.000000	 0.000000	 0.000000
+FIELD OF VIEW
+70.000000
+------------------------
+----------LIGHT----------
+COORDINATES
+-20.000000	 0.000000	 30.000000
+BRIGHTNESS
+0.700000
+COLOR
+255	 255	 255
+------------------------
+----------PLANE----------
+COORDINATES
+0.000000	 -20.000000	 0.000000
+NORMAL
+0.000000	 1.000000	 0.000000
+COLOR
+255	 0	 225
+------------------------
+---------SPHERE---------
+COORDINATES
+0.000000 , 0.000000 , 20.000000
+DIAMETER
+20.000000
+COLOR
+255 , 0 , 0
+------------------------
+--------CYLINDER--------
+COORDINATES
+50.000000	 0.000000	 20.600000
+NORMAL
+0.000000	 0.000000	 1.000000
+DIAMETER
+14.200000
+HEIGHT
+21.420000
+COLOR
+10	 0	 255
+------------------------
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+LEFT 
+Image creating is done
+LEFT 
+Image creating is done
+LEFT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+RIGHT 
+Image creating is done
+LEFT 
+Image creating is done
+LEFT 
+Image creating is done
+LEFT 
+Image creating is done
+LEFT 
+Image creating is done
+LEFT 
+Image creating is done
+LEFT 
+Image creating is done
+LEFT 
+Image creating is done
+LEFT 
+Image creating is done

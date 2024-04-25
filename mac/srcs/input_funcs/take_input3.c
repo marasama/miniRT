@@ -6,11 +6,25 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 00:21:09 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/18 19:47:54 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/25 14:43:19 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minirt.h"
+
+t_v3	check_normal(t_v3 *a)
+{
+	t_v3	normal;
+
+	if (a->x == 0 && a->y == 0 && a->z == 0)
+	{
+		normal.x = 1;
+		normal.y = 0;
+		normal.z = 0;
+		return (normal);
+	}
+	return (*a);
+}
 
 void	set_sphere(t_all **all, char **words, int count)
 {
@@ -52,6 +66,7 @@ void	set_plane(t_all **all, char **words, int count)
 	ft_lstadd_front(&(*all)->world->planes, ft_lstnew(new_plane));
 	new_plane->cordnts = take_v3(all, words[1]);
 	new_plane->normal = normalize(take_v3(all, words[2]));
+	new_plane->normal = check_normal(&new_plane->normal);
 	new_plane->color = take_color(all, words[3]);
 	print_plane(new_plane);
 }
@@ -75,6 +90,7 @@ void	set_cylinder(t_all **all, char **words, int count)
 	ft_lstadd_front(&(*all)->world->cylinders, ft_lstnew(new_cylinder));
 	new_cylinder->cordnts = take_v3(all, words[1]);
 	new_cylinder->normal = normalize(take_v3(all, words[2]));
+	new_cylinder->normal = check_normal(&new_cylinder->normal);
 	new_cylinder->diameter = ft_strtod(words[3]);
 	new_cylinder->height = ft_strtod(words[4]);
 	new_cylinder->color = take_color(all, words[5]);

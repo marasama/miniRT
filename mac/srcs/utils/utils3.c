@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 09:41:10 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/25 12:05:10 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/25 14:06:36 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,7 @@ int	key_press2(int keycode, t_all **all)
 		(*all)->world->camera->cordnts.x += 0.5;
 		create_everything(all);
 	}
-	else if (keycode == CROSS)
-	{
-		printf("CROSS \n");
-		destroy_exit(all);
-	}
+	return (1);
 }
 
 void	free_words(char **a)
