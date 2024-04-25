@@ -47,7 +47,7 @@ SRC = \
 
 OBJS = $(SRC:.c=.o)
 
-MLX = -Lmlx -lmlx -Imlx -framework OpenGL -framework AppKit
+MLX = -L./minilibx -lmlx -lXext -lX11 -lm -lbsd
 
 all : $(NAME)
 
