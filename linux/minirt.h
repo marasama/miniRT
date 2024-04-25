@@ -13,7 +13,7 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# include "./mlx/mlx.h"
+# include "./minilibx/mlx.h"
 # include "./libft/libft.h"
 # include "keycode.h"
 # include <math.h>
