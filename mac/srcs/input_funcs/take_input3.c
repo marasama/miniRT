@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 00:21:09 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/25 14:43:19 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:18:18 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,27 @@ t_v3	check_normal(t_v3 *a)
 		return (normal);
 	}
 	return (*a);
+}
+
+t_v3	take_plane_coordnts(t_all **all, const char *a, t_v3 normal, char **words)
+{
+	char	**digits;
+	t_v3	v;
+
+	digits = ft_split(a, ',');
+	if (!digits || !digits[0] || !digits[1] || !digits[2] || digits[3])
+		temp_free(all, words, digits);
+	if (!ft_strcmp(digits[0], "NULL") && normal.x != 0)
+		temp_free(all, words, digits);
+	else if (!ft_strcmp(digits[1], "NULL") && normal.y != 0)
+		temp_free(all, words, digits);
+	else if (!ft_strcmp(digits[2], "NULL") && normal.z != 0)
+		temp_free(all, words, digits);
+	v.x = ft_strtod(digits[0]);
+	v.y = ft_strtod(digits[1]);
+	v.z = ft_strtod(digits[2]);
+	free_words(digits);
+	return (v);
 }
 
 void	set_sphere(t_all **all, char **words, int count)
@@ -64,9 +85,9 @@ void	set_plane(t_all **all, char **words, int count)
 		print_error(all, 4);
 	}
 	ft_lstadd_front(&(*all)->world->planes, ft_lstnew(new_plane));
-	new_plane->cordnts = take_v3(all, words[1]);
 	new_plane->normal = normalize(take_v3(all, words[2]));
 	new_plane->normal = check_normal(&new_plane->normal);
+	new_plane->cordnts = take_v3(all, words[1]);
 	new_plane->color = take_color(all, words[3]);
 	print_plane(new_plane);
 }

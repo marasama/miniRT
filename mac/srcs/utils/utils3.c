@@ -6,12 +6,19 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 09:41:10 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/25 14:06:36 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:59:13 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minirt.h"
 #include <stdio.h>
+
+void	temp_free(t_all **all, char **words, char **digits)
+{
+	free_words(digits);
+	free_words(words);
+	print_error(all, 0);
+}
 
 void	key_hooks(t_all **all)
 {

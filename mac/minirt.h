@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:18:04 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/25 14:34:33 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:37:50 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "./mlx/mlx.h"
 # include "./libft/libft.h"
 # include "keycode.h"
-# include <math.h>
 # include <stdbool.h>
 
 # define WIDTH 400
@@ -151,7 +150,8 @@ void	print_error(t_all **all, int opt);
 void	take_inputs(t_all **all, int argc, char **argv);
 void	check_objects(t_all **all, const char *a);
 t_v3	check_normal(t_v3 *a);
-// SET OBJECTS FUNCTIONS
+// INPUT FUNCTIONS
+void	temp_free(t_all **all, char **words, char **digits);
 int		take_color(t_all **all, const char *a);
 t_v3	take_v3(t_all **all, const char *a);
 void	set_camera(t_all **all, char **words, int count);
@@ -182,16 +182,11 @@ void	cylinder_intersect(t_list *cy, t_ray *ray, bool *a);
 double	dot_v3(t_v3 a, t_v3 b);
 t_v3	subtract_v3(t_v3 a, t_v3 b);
 t_v3	add_v3(t_v3 a, t_v3 b);
-t_v3	divide_v3(t_v3 a, double b);
 t_v3	scale_v3(t_v3 a, double b);
-t_v3	add_num_v3(t_v3 a, double b);
-t_v3	subtract_num_v3(t_v3 a, double b);
 t_v3	cross_v3(const t_v3 vec1, const t_v3 vec2);
 t_v3	normalize(t_v3 vec);
 t_v3	create_vector(double x, double y, double z);
 double	len_v3(t_v3 v);
-double	max(double a, double b);
-double	min(double a, double b);
 // COLOR FUNCS
 void	set_color(t_all **all, int x, int y, t_color color);
 int		clamp(int x, int max, int min);

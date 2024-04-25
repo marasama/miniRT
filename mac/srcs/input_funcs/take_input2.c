@@ -6,12 +6,11 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 00:20:29 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/25 14:27:40 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:37:21 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minirt.h"
-#include <stdio.h>
 
 int	take_color(t_all **all, const char *a)
 {
@@ -68,9 +67,9 @@ void	set_camera(t_all **all, char **words, int count)
 		print_error(all, 4);
 	}
 	ft_lstadd_front(&(*all)->mallocs, ft_lstnew((*all)->world->camera));
-	(*all)->world->camera->cordnts = take_v3(all, words[1]);
 	(*all)->world->camera->normal = take_v3(all, words[2]);
 	(*all)->world->camera->normal = check_normal(&(*all)->world->camera->normal);
+	(*all)->world->camera->cordnts = take_v3(all, words[1]);
 	(*all)->world->camera->fov = clamp(ft_strtod(words[3]), 180, 0);
 	print_camera((*all)->world->camera);
 }

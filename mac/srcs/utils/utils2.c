@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 18:45:39 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/25 14:06:56 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:34:13 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,20 +50,6 @@ int	key_press(int keycode, t_all **all)
 	else
 		key_press2(keycode, all);
 	return (1);
-}
-
-double	max(double a, double b)
-{
-	if (a > b)
-		return (a);
-	return (b);
-}
-
-double	min(double a, double b)
-{
-	if (a < b)
-		return (a);
-	return (b);
 }
 
 int	clamp(int x, int max, int min)
