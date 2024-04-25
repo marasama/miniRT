@@ -6,13 +6,12 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 18:29:03 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/25 17:40:32 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:54:53 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minirt.h"
 #include <math.h>
-
 
 double	dot_v3(t_v3 a, t_v3 b)
 {
