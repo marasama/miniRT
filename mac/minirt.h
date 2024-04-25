@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:18:04 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/25 17:38:48 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:19:23 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,18 +148,18 @@ double	ft_strtod(const char *a);
 void	free_list(t_list **mem);
 void	print_error(t_all **all, int opt);
 void	take_inputs(t_all **all, int argc, char **argv);
-void	check_objects(t_all **all, const char *a);
-t_v3	check_normal(t_v3 *a);
+void	check_objects(t_all **all, char *a);
+t_v3	check_nor(t_v3 *a);
 // INPUT FUNCTIONS
 void	temp_free(t_all **all, char **words, char **digits);
-int		take_color(t_all **all, const char *a);
-t_v3	take_v3(t_all **all, const char *a);
-void	set_camera(t_all **all, char **words, int count);
-void	set_ambient(t_all **all, char **words, int count);
-void	set_light(t_all **all, char **words, int count);
-void	set_plane(t_all **all, char **words, int count);
-void	set_sphere(t_all **all, char **words, int count);
-void	set_cylinder(t_all **all, char **words, int count);
+int		take_color(t_all **all, const char *a, char *b);
+t_v3	take_v3(t_all **all, const char *a, char *b);
+void	set_camera(t_all **all, char **words, int count, char *a);
+void	set_ambient(t_all **all, char **words, int count, char *a);
+void	set_light(t_all **all, char **words, int count, char *a);
+void	set_plane(t_all **all, char **words, int count, char *a);
+void	set_sphere(t_all **all, char **words, int count, char *a);
+void	set_cylinder(t_all **all, char **words, int count, char *a);
 // PRINT OBJECTS FUNCTIONS
 void	print_camera(t_camera *asd);
 void	print_ambient(t_ambient *asd);

@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 22:08:01 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/25 17:44:16 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:20:29 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-void	check_objects(t_all **all, const char *a)
+void	check_objects(t_all **all, char *a)
 {
 	int		count;
 	char	**words;
@@ -22,21 +22,25 @@ void	check_objects(t_all **all, const char *a)
 	count = 0;
 	words = trim_words(all, ft_split(a, ' '), &count);
 	if (!words || !words[0])
+	{
+		free(a);
+		free_words(words);
 		print_error(all, 4);
+	}
 	if (count >= 3)
 	{
 		if (ft_strcmp(words[0], "C") == 0)
-			set_camera(all, words, count);
+			set_camera(all, words, count, a);
 		else if (ft_strcmp(words[0], "A") == 0)
-			set_ambient(all, words, count);
+			set_ambient(all, words, count, a);
 		else if (ft_strcmp(words[0], "L") == 0)
-			set_light(all, words, count);
+			set_light(all, words, count, a);
 		else if (ft_strcmp(words[0], "sp") == 0)
-			set_sphere(all, words, count);
+			set_sphere(all, words, count, a);
 		else if (ft_strcmp(words[0], "pl") == 0)
-			set_plane(all, words, count);
+			set_plane(all, words, count, a);
 		else if (ft_strcmp(words[0], "cy") == 0)
-			set_cylinder(all, words, count);
+			set_cylinder(all, words, count, a);
 	}
 	free_words(words);
 }
