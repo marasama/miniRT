@@ -6,12 +6,13 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 02:11:50 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/18 20:10:55 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/26 21:31:41 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minirt.h"
 #include <stdio.h>
+#include <math.h>
 
 t_ray	make_ray(t_camera *cam, float *pixel)
 {
@@ -45,8 +46,6 @@ t_ray	gen_ray(t_all **all, int x, int y)
 
 void	init_cam(t_camera *cam)
 {
-	t_v3	tmp;
-
 	cam->props.w = normalize(cross_v3(cam->normal, (t_v3){0, 1, 0}));
 	cam->props.u = normalize(cross_v3(cam->normal, cam->props.w));
 	cam->props.w = normalize(cross_v3(cam->normal, cam->props.u));
@@ -57,7 +56,6 @@ void	create_everything(t_all **all)
 	int		x;
 	int		y;
 	t_ray	tmp;
-	t_v3	convert;
 	int		color;
 
 	y = -1;

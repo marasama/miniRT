@@ -6,27 +6,28 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:18:04 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/25 12:03:38 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/26 21:41:45 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# include "./minilibx/mlx.h"
+# include "./mlx/mlx.h"
 # include "./libft/libft.h"
-# include "keycode.h"
-# include <math.h>
 # include <stdbool.h>
 
 # define WIDTH 1000
 # define HEIGHT 1000
 
-# define SPHERE 1
-# define PLANE 2
-# define CYLINDER 3
+# define CROSS 17
+# define ESC 53
+# define UP_ARROW 13
+# define LEFT_ARROW 0
+# define DOWN_ARROW 1
+# define RIGHT_ARROW 2
 
-# define PI 3.141592653589793238462643383279502984
+# define PI 3.14
 # define EPSILON 0.0001
 
 typedef struct s_v3
@@ -49,7 +50,6 @@ typedef struct s_hit
 	t_v3	hit_point;
 	t_v3	normal;
 	int		color;
-	int		type;
 }	t_hit;
 
 typedef struct s_ray
@@ -149,16 +149,18 @@ double	ft_strtod(const char *a);
 void	free_list(t_list **mem);
 void	print_error(t_all **all, int opt);
 void	take_inputs(t_all **all, int argc, char **argv);
-void	check_objects(t_all **all, const char *a);
-// SET OBJECTS FUNCTIONS
-int		take_color(t_all **all, const char *a);
-t_v3	take_v3(t_all **all, const char *a);
-void	set_camera(t_all **all, char **words, int count);
-void	set_ambient(t_all **all, char **words, int count);
-void	set_light(t_all **all, char **words, int count);
-void	set_plane(t_all **all, char **words, int count);
-void	set_sphere(t_all **all, char **words, int count);
-void	set_cylinder(t_all **all, char **words, int count);
+void	check_objects(t_all **all, char *a);
+t_v3	check_nor(t_v3 *a);
+// INPUT FUNCTIONS
+void	temp_free(t_all **all, char **words, char **digits);
+int		take_color(t_all **all, const char *a, char *b, char **words);
+t_v3	take_v3(t_all **all, const char *a, char *b, char **words);
+void	set_camera(t_all **all, char **words, int count, char *a);
+void	set_ambient(t_all **all, char **words, int count, char *a);
+void	set_light(t_all **all, char **words, int count, char *a);
+void	set_plane(t_all **all, char **words, int count, char *a);
+void	set_sphere(t_all **all, char **words, int count, char *a);
+void	set_cylinder(t_all **all, char **words, int count, char *a);
 // PRINT OBJECTS FUNCTIONS
 void	print_camera(t_camera *asd);
 void	print_ambient(t_ambient *asd);
@@ -181,19 +183,14 @@ void	cylinder_intersect(t_list *cy, t_ray *ray, bool *a);
 double	dot_v3(t_v3 a, t_v3 b);
 t_v3	subtract_v3(t_v3 a, t_v3 b);
 t_v3	add_v3(t_v3 a, t_v3 b);
-t_v3	divide_v3(t_v3 a, double b);
 t_v3	scale_v3(t_v3 a, double b);
-t_v3	add_num_v3(t_v3 a, double b);
-t_v3	subtract_num_v3(t_v3 a, double b);
 t_v3	cross_v3(const t_v3 vec1, const t_v3 vec2);
 t_v3	normalize(t_v3 vec);
 t_v3	create_vector(double x, double y, double z);
 double	len_v3(t_v3 v);
-double	max(double a, double b);
-double	min(double a, double b);
 // COLOR FUNCS
 void	set_color(t_all **all, int x, int y, t_color color);
-int		clamp(int x);
+int		clamp(int x, int max, int min);
 int		color_to_int(t_color v3_color);
 t_color	int_to_color(int color);
 int		add_color(int color_a, int color_b);

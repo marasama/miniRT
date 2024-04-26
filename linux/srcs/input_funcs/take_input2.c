@@ -6,14 +6,13 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 00:20:29 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/17 13:25:46 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/26 21:29:44 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minirt.h"
-#include <stdio.h>
 
-int	take_color(t_all **all, const char *a)
+int	take_color(t_all **all, const char *a, char *b, char **words)
 {
 	t_color	color;
 	char	**digits;
@@ -21,17 +20,19 @@ int	take_color(t_all **all, const char *a)
 	digits = ft_split(a, ',');
 	if (!digits || !digits[0] || !digits[1] || !digits[2] || digits[3])
 	{
+		free(b);
+		free_words(words);
 		free_words(digits);
 		print_error(all, 0);
 	}
-	color.red = clamp(ft_atoi(digits[0]));
-	color.green = clamp(ft_atoi(digits[1]));
-	color.blue = clamp(ft_atoi(digits[2]));
+	color.red = clamp(ft_atoi(digits[0]), 255, 0);
+	color.green = clamp(ft_atoi(digits[1]), 255, 0);
+	color.blue = clamp(ft_atoi(digits[2]), 255, 0);
 	free_words(digits);
 	return (color_to_int(color));
 }
 
-t_v3	take_v3(t_all **all, const char *a)
+t_v3	take_v3(t_all **all, const char *a, char *b, char **words)
 {
 	char	**digits;
 	t_v3	v;
@@ -39,6 +40,8 @@ t_v3	take_v3(t_all **all, const char *a)
 	digits = ft_split(a, ',');
 	if (!digits || !digits[0] || !digits[1] || !digits[2] || digits[3])
 	{
+		free(b);
+		free_words(words);
 		free_words(digits);
 		print_error(all, 0);
 	}
@@ -49,67 +52,86 @@ t_v3	take_v3(t_all **all, const char *a)
 	return (v);
 }
 
-void	set_camera(t_all **all, char **words, int count)
+void	set_camera(t_all **all, char **words, int count, char *a)
 {
 	if (count != 4)
 	{
+		free(a);
 		free_words(words);
 		print_error(all, 0);
 	}
 	if ((*all)->world->camera != NULL)
 	{
+		free(a);
 		free_words(words);
 		print_error(all, 5);
 	}
 	(*all)->world->camera = (t_camera *)malloc(sizeof(t_camera));
 	if ((*all)->world->camera == NULL)
 	{
+		free(a);
 		free_words(words);
 		print_error(all, 4);
 	}
 	ft_lstadd_front(&(*all)->mallocs, ft_lstnew((*all)->world->camera));
-	(*all)->world->camera->cordnts = take_v3(all, words[1]);
-	(*all)->world->camera->normal = take_v3(all, words[2]);
-	(*all)->world->camera->fov = ft_strtod(words[3]);
+	(*all)->world->camera->normal = take_v3(all, words[2], a, words);
+	(*all)->world->camera->normal = check_nor(&(*all)->world->camera->normal);
+	(*all)->world->camera->cordnts = take_v3(all, words[1], a, words);
+	(*all)->world->camera->fov = clamp(ft_strtod(words[3]), 180, 0);
 	print_camera((*all)->world->camera);
 }
 
-void	set_ambient(t_all **all, char **words, int count)
+void	set_ambient(t_all **all, char **words, int count, char *a)
 {
 	if (count != 3)
 	{
+		free(a);
 		free_words(words);
 		print_error(all, 0);
 	}
 	if ((*all)->world->ambient != NULL)
 	{
+		free(a);
 		free_words(words);
 		print_error(all, 5);
 	}
 	(*all)->world->ambient = (t_ambient *)malloc(sizeof(t_ambient));
 	if ((*all)->world->ambient == NULL)
 	{
+		free(a);
 		free_words(words);
 		print_error(all, 4);
 	}
 	ft_lstadd_front(&(*all)->mallocs, ft_lstnew((*all)->world->ambient));
 	(*all)->world->ambient->l_ratio = ft_strtod(words[1]);
-	(*all)->world->ambient->color = take_color(all, words[2]);
+	(*all)->world->ambient->color = take_color(all, words[2], a, words);
 	print_ambient((*all)->world->ambient);
 }
 
-void	set_light(t_all **all, char **words, int count)
+void	set_light(t_all **all, char **words, int count, char *a)
 {
 	if (count != 4)
+	{
+		free(a);
+		free_words(words);
 		print_error(all, 0);
+	}
 	if ((*all)->world->light != NULL)
-		print_error(all, 5);
+	{
+		free(a);
+		free_words(words);
+		print_error(all, 4);
+	}
 	(*all)->world->light = (t_light *)malloc(sizeof(t_light));
 	if ((*all)->world->light == NULL)
+	{
+		free(a);
+		free_words(words);
 		print_error(all, 4);
+	}
 	ft_lstadd_front(&(*all)->mallocs, ft_lstnew((*all)->world->light));
-	(*all)->world->light->cordnts = take_v3(all, words[1]);
+	(*all)->world->light->cordnts = take_v3(all, words[1], a, words);
 	(*all)->world->light->brightness = ft_strtod(words[2]);
-	(*all)->world->light->color = take_color(all, words[3]);
+	(*all)->world->light->color = take_color(all, words[3], a, words);
 	print_light((*all)->world->light);
 }

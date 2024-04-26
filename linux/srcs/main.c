@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:17:45 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/18 19:41:50 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:46:46 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,11 @@ int	main(int argc, char **argv)
 
 	all = (t_all *)malloc(sizeof(t_all));
 	if (!all)
+	{
+		printf("Error\n");
+		printf("Memory allocation error!\n");
 		return (1);
+	}
 	init_all(&all);
 	init_mlx(&all);
 	take_inputs(&all, argc, argv);

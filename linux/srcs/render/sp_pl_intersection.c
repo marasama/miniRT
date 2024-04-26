@@ -6,12 +6,12 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 18:52:23 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/18 19:30:54 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/26 21:33:20 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minirt.h"
-#include <stdio.h>
+#include <math.h>
 
 void	calc_roots(t_sphere *sp, t_ray *ray, double *roots)
 {
@@ -53,7 +53,6 @@ void	change_sphere_hit(t_sphere *sp, t_ray *ray, double *roots, bool *a)
 		ray->hit.normal = normalize(subtract_v3(ray->hit.hit_point,
 					sp->cordnts));
 		ray->hit.color = sp->color;
-		ray->hit.type = SPHERE;
 		*a = true;
 	}
 }
@@ -90,14 +89,12 @@ void	change_plane_hit(t_plane *pl, t_ray *ray, double parallel, bool *a)
 						scale_v3(pl->normal, EPSILON));
 		ray->hit.normal = pl->normal;
 		ray->hit.color = pl->color;
-		ray->hit.type = PLANE;
 		(*a) = true;
 	}
 }
 
 void	plane_intersect(t_all **all, t_ray *ray, bool *a)
 {
-	double	hit;
 	double	parallel;
 	t_list	*planes;
 	t_plane	*tmp;

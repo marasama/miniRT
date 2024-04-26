@@ -6,24 +6,34 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 17:11:01 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/25 12:04:24 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/26 21:40:12 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minirt.h"
-#include <fcntl.h>
 #include <stdio.h>
-#include <unistd.h>
+
+int	get_sign(const char *a)
+{
+	int	sign;
+
+	sign = 1;
+	if (a[0] == '-')
+		sign = -1;
+	return (sign);
+}
 
 double	ft_strtod(const char *a)
 {
 	int		d;
 	double	f;
 	double	g;
+	int		sign;
 
+	sign = get_sign(a);
 	d = 0;
 	f = ft_atoi(a);
-	while (a[d] == '-' || a[d] == '+')
+	if (a[d] == '-' || a[d] == '+')
 		d++;
 	while (ft_isdigit(a[d]) && a[d])
 		d++;
@@ -35,38 +45,11 @@ double	ft_strtod(const char *a)
 	g = ft_atoi(a);
 	while (ft_isdigit(a[d]) && a[d])
 		d++;
-	if (f >= 0)
+	if (sign == 1)
 		f += (g / ft_pow(++d));
 	else
 		f -= (g / ft_pow(++d));
 	return (f);
-}
-
-int	ft_isws(const char *a, int *b, int c)
-{
-	int	d;
-
-	if (*b == ft_strlen(a) - 1)
-		return (0);
-	d = *b + 1;
-	if (c == 0)
-	{
-		while ((a[*b] == 32 || a[*b] == 9 || a[*b] == 13 || a[*b] == 10)
-			&& a[*b])
-			(*b)++;
-		return (1);
-	}
-	else if (c == 1)
-	{
-		if ((a[d] == 32 || a[d] == 9 || a[d] == 13 || a[d] == 10) && a[d])
-			return (1);
-	}
-	else if (c == 2)
-	{
-		if ((a[*b] == 32 || a[*b] == 9 || a[*b] == 13 || a[*b] == 10) && a[*b])
-			return (1);
-	}
-	return (0);
 }
 
 void	free_list(t_list **mem)
