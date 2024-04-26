@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 23:31:35 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/25 17:40:16 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/26 21:33:41 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	hit_cylinder_cap(t_cylinder *cy, t_ray *ray, double height, bool *a)
 	ray->hit.hit_len = root;
 	ray->hit.hit_point = add_v3(ray->origin, scale_v3(ray->direction, root));
 	ray->hit.color = cy->color;
-	ray->hit.type = CYLINDER;
 	*a = true;
 	if (height > 0)
 		ray->hit.normal = cy->normal;
@@ -104,7 +103,6 @@ void	hit_cylinder_side(t_cylinder *cy, t_ray *ray, double *roots, bool *a)
 			ray->hit.normal = normalize(subtract_v3(ray->hit.hit_point, \
 					add_v3(cy->cordnts, scale_v3(cy->normal, hit_height))));
 			ray->hit.color = cy->color;
-			ray->hit.type = CYLINDER;
 			*a = true;
 		}
 		i++;

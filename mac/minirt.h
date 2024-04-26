@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:18:04 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/25 18:19:23 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/26 21:41:45 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,19 @@
 
 # include "./mlx/mlx.h"
 # include "./libft/libft.h"
-# include "keycode.h"
 # include <stdbool.h>
 
-# define WIDTH 400
-# define HEIGHT 400
+# define WIDTH 1000
+# define HEIGHT 1000
 
-# define SPHERE 1
-# define PLANE 2
-# define CYLINDER 3
+# define CROSS 17
+# define ESC 53
+# define UP_ARROW 13
+# define LEFT_ARROW 0
+# define DOWN_ARROW 1
+# define RIGHT_ARROW 2
 
-# define PI 3.141592653589793238462643383279502984
+# define PI 3.14
 # define EPSILON 0.0001
 
 typedef struct s_v3
@@ -48,7 +50,6 @@ typedef struct s_hit
 	t_v3	hit_point;
 	t_v3	normal;
 	int		color;
-	int		type;
 }	t_hit;
 
 typedef struct s_ray
@@ -152,8 +153,8 @@ void	check_objects(t_all **all, char *a);
 t_v3	check_nor(t_v3 *a);
 // INPUT FUNCTIONS
 void	temp_free(t_all **all, char **words, char **digits);
-int		take_color(t_all **all, const char *a, char *b);
-t_v3	take_v3(t_all **all, const char *a, char *b);
+int		take_color(t_all **all, const char *a, char *b, char **words);
+t_v3	take_v3(t_all **all, const char *a, char *b, char **words);
 void	set_camera(t_all **all, char **words, int count, char *a);
 void	set_ambient(t_all **all, char **words, int count, char *a);
 void	set_light(t_all **all, char **words, int count, char *a);

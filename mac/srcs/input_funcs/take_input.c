@@ -6,13 +6,19 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 22:08:01 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/25 18:20:29 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/26 21:39:43 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minirt.h"
 #include <fcntl.h>
 #include <unistd.h>
+
+void	free_check(t_all **all, char *a)
+{
+	free(a);
+	print_error(all, 4);
+}
 
 void	check_objects(t_all **all, char *a)
 {
@@ -22,11 +28,7 @@ void	check_objects(t_all **all, char *a)
 	count = 0;
 	words = trim_words(all, ft_split(a, ' '), &count);
 	if (!words || !words[0])
-	{
-		free(a);
-		free_words(words);
-		print_error(all, 4);
-	}
+		free_check(all, a);
 	if (count >= 3)
 	{
 		if (ft_strcmp(words[0], "C") == 0)

@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 05:30:51 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/25 17:54:16 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/26 21:33:03 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,12 @@ int	check_shadow(t_all **all, t_light *light, t_hit hit)
 	t_ray	shadow;
 	t_v3	light_direction;
 	double	distance;
-	t_v3	first_hit;
-	double	hit_len;
 
 	light_direction = subtract_v3(light->cordnts, hit.hit_point);
 	distance = sqrt(dot_v3(light_direction, light_direction));
 	shadow.origin = add_v3(hit.hit_point, scale_v3(hit.normal, EPSILON));
 	shadow.direction = normalize(light_direction);
 	shadow.hit.hit_len = distance;
-	shadow.hit.type = 0;
 	if (check_intersection(all, &shadow))
 	{
 		if (shadow.hit.hit_len > EPSILON)
@@ -81,7 +78,6 @@ int	re_color(t_all **all, t_ray *ray)
 {
 	int		ambient;
 	t_light	*light;
-	int		l_color;
 	int		color;
 
 	color = 0;

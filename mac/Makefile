@@ -6,17 +6,15 @@
 #    By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/13 04:33:34 by adurusoy          #+#    #+#              #
-#    Updated: 2024/04/25 11:45:18 by adurusoy         ###   ########.fr        #
+#    Updated: 2024/04/26 21:35:23 by adurusoy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = miniRT
 
-FLAGS = -Wall -Werror -Wextra -g
-
-INCFLAGS = -I minishell.h -I ./libft/libft.h
-
 CC = gcc
+
+CFLAGS = -Wall -Werror -Wextra -g
 
 SRC = \
 		./srcs/utils/utils.c \
@@ -53,21 +51,26 @@ all : $(NAME)
 
 $(NAME) : $(OBJS)
 	@echo "\e[33mCompiling...\e[0m"
+	@make -s -C ./mlx > /dev/null 2>&1
+	@cp mlx/libmlx.a .
+	@printf "\e[33mMLX: \t\t\t\t\e[35mDONE \e[0m\n"	
 	@make -s -C ./libft
 	@cp libft/libft.a .
 	@printf "\e[33mLIBFT: \t\t\t\t\e[35mDONE \e[0m\n"
-	@$(CC) $(FLAGS) $(FT_PRNT) $(OBJS) libft.a $(MLX) -o $(NAME) $(INCFLAGS)
+	@$(CC) $(OBJS) $(CFLAGS) libft.a libmlx.a $(MLX) -o $(NAME)
 	@printf "\e[33mHumble RayTracing Engine: \t\e[35mDONE\e[0m\n"
 
 norm :
-	@norminette $(SRC) minirt.h ./libft/ ./keycode.h
+	@norminette $(SRC) minirt.h ./libft/
 	@printf "\e[33mNorminette: \e[35mYOUR CODE SUITS NORM's TASTE!!! \e[0m\n"
 
 clean :
+	@make -s -C ./mlx clean
 	@make -s -C ./libft fclean
 	@rm -rf $(OBJS)
 
 fclean : clean
+	@rm -rf libmlx.a
 	@rm -rf libft.a
 	@rm -rf $(NAME)
 
