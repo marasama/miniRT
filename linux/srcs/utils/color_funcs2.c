@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 05:30:51 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/26 21:33:03 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/27 13:13:21 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,9 @@ double	light_intensity(t_light light, t_hit hit)
 {
 	t_v3	light_direction;
 	double	light_ratio;
-	double	distance;
 	double	intensity;
 
 	light_direction = subtract_v3(light.cordnts, hit.hit_point);
-	distance = dot_v3(light_direction, light_direction);
 	light_ratio = dot_v3(normalize(light_direction), hit.normal);
 	if (light_ratio <= 0)
 		return (0);

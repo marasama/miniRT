@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 18:45:39 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/26 21:45:49 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/27 13:29:40 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 
 int	destroy_exit(t_all **all)
 {
-	if ((*all)->mlx->image)
+	if ((*all)->mlx)
+	{
 		mlx_destroy_image((*all)->mlx->ptr, (*all)->mlx->image);
-	if ((*all)->mlx->window)
 		mlx_destroy_window((*all)->mlx->ptr, (*all)->mlx->window);
+	}
 	free_list(&(*all)->world->planes);
 	free_list(&(*all)->world->spheres);
 	free_list(&(*all)->world->cylinders);

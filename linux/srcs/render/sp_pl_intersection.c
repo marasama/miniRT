@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 18:52:23 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/26 21:33:20 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/27 13:13:55 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,8 @@ void	sphere_intersect(t_all **all, t_ray *ray, bool *a)
 {
 	t_list		*sphere_list;
 	t_sphere	*tmp;
-	int			i;
 	double		roots[2];
 
-	i = 0;
 	sphere_list = (*all)->world->spheres;
 	while (sphere_list != NULL)
 	{

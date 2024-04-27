@@ -6,7 +6,7 @@
 #    By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/13 04:33:34 by adurusoy          #+#    #+#              #
-#    Updated: 2024/04/26 22:45:12 by adurusoy         ###   ########.fr        #
+#    Updated: 2024/04/27 13:14:15 by adurusoy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ SRC = \
 
 OBJS = $(SRC:.c=.o)
 
-MLX = -L./minilibx -lmlx -lXext -lX11 -lm -lbsd
+MLX = -L./minilibx -lmlx -Imlx -lXext -lX11 -lm -lbsd
 
 all : $(NAME)
 

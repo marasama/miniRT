@@ -6,14 +6,14 @@
 /*   By: adurusoy <adurusoy@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:18:04 by adurusoy          #+#    #+#             */
-/*   Updated: 2024/04/26 21:41:45 by adurusoy         ###   ########.fr       */
+/*   Updated: 2024/04/27 13:27:23 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# include "./mlx/mlx.h"
+# include "./minilibx/mlx.h"
 # include "./libft/libft.h"
 # include <stdbool.h>
 
@@ -21,11 +21,11 @@
 # define HEIGHT 1000
 
 # define CROSS 17
-# define ESC 53
-# define UP_ARROW 13
-# define LEFT_ARROW 0
-# define DOWN_ARROW 1
-# define RIGHT_ARROW 2
+# define ESC 65307
+# define UP_ARROW 65362
+# define LEFT_ARROW 65361
+# define DOWN_ARROW 65364
+# define RIGHT_ARROW 65363
 
 # define PI 3.14
 # define EPSILON 0.0001
